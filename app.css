@@ -1,0 +1,6 @@
+#map {
+    width: 800px;
+    height: 600px;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
