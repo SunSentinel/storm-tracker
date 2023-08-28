@@ -9,6 +9,14 @@ svg {
     position: relative;
 }
 
+body {
+    font-family: 'Lato';
+	font-size: 10px;
+	line-height: 1em;
+	
+    /* margin: 25px; */
+}
+
 .leaflet-fade-anim .leaflet-tile,
 .leaflet-fade-anim .leaflet-popup {
 	opacity: 0;

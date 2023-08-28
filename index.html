@@ -7,15 +7,25 @@
 
     <link rel="stylesheet" type="text/css" href="app.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" >
+
+    <link rel="stylesheet" href="leaflet.legend.css" />
 </head>
 <body>
     <div id="map"> </div>
 
-    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <div id="timestamp">
+        <p>Last updated as of Aug. 28, 8:00 A.M.</p>
+        <p>Source: National Hurricane Center | Map: <a href="https://www.sun-sentinel.com/author/danica-jefferies/">Danica Jefferies / South Florida Sun Sentinel</a></p>
+    </div>
+
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="leaflet.shpfile.js"></script>
-    <script src="shp.js"></script>
     <script src="catiline.js"></script>
+    <script src="leaflet.legend.js"></script>
+    <script src="shp.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
