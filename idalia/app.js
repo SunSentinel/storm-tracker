@@ -1,7 +1,6 @@
 // CHANGE THE ZIP FILE HERE
 // var zipfile = "data/al102023_5day_007.zip";
 
-// var map = L.map('map').setView([32, -70], 4);
 var map = L.map('map').setView([28, -76], 4.5);
 
 // Adding Voyager Basemap
@@ -16,7 +15,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.p
 
 
 // Try loading layers in as different shapefiles
-
 // WIND WARNINGS
 var wwlinZip = "data/wwlin.zip"
 var wwlinShp = new L.Shapefile(wwlinZip, {
@@ -36,6 +34,7 @@ var wwlinShp = new L.Shapefile(wwlinZip, {
             });
         }
         // console.log(Object.keys(feature.properties.TCWW[0]))
+        console.log(feature.properties.TCWW)
     },
     style: function(feature) {
         switch (feature.properties.TCWW) {
@@ -90,18 +89,19 @@ var pointsZip = "data/points.zip"
 var pointsShp = new L.Shapefile(pointsZip, {
 onEachFeature: function(feature, layer) {
     if (feature.properties) {
-        layer.bindTooltip(Object.keys(feature.properties.DVLBL).map(function(k) {
+         // PREV: layer.bindTooltip(Object.keys(feature.properties.DVLBL).map(function(k) {
+        layer.bindTooltip(Object.keys(feature.properties.DVLBL[0]).map(function() {
             switch(feature.properties.DVLBL) {
-                case 'D' : return "Status: Tropical depression, winds under 39 mph";
-                case 'S' : return "Status: Tropical storm, winds between 39 to 73 mph";
-                case 'H' : return "Status: Hurricane, winds between 74 and 110 mph";
-                case 'M' : return "Status: Major hurricane, winds greater than 110 mph";
+                case 'D' : return "Status: Tropical depression, winds under 39 mph <br /> Expected: " + feature.properties.DATELBL;
+                case 'S' : return "Status: Tropical storm, winds between 39 to 73 mph <br /> Expected: " + feature.properties.DATELBL;
+                case 'H' : return "Status: Hurricane, winds between 74 and 110 mph <br /> Expected: " + feature.properties.DATELBL;
+                case 'M' : return "Status: Major hurricane, winds greater than 110 mph <br /> Expected: " + feature.properties.DATELBL;
             }
         })
         .join("<br />"), {
             maxHeight: 50
         });
-        // console.log(Object.keys(feature.properties))
+        // console.log(feature.properties)
     }
 },
 pointToLayer: function(feature, latlng) {
@@ -128,7 +128,7 @@ pointsShp.addTo(map);
 var legend = L.control.legend({
     position: 'bottomright',
     collapsed: false,
-    symbolWidth: 24,
+    symbolWidth: 16,
     opacity: 0.9,
     column: 2,
     legends: [{
@@ -185,4 +185,6 @@ var legend = L.control.legend({
     }]
 })
 legend.addTo(map);
+
+
 
