@@ -1,5 +1,4 @@
 .leaflet-legend {
-  /* font-family: Lato; */
   background-color: white;
   font-size: 1em;
   }
@@ -11,7 +10,7 @@
   
   .leaflet-legend-column {
     float: left;
-    margin-left: 10px;
+    margin-left: 5px;
   }
   
   
@@ -83,3 +82,31 @@
     display: block;
     clear: both;
   }
+
+
+  @media screen and (max-width: 450px) {
+    
+    .leaflet-legend-item {
+      display: table;
+      margin: 0;
+    }
+
+    .leaflet-legend-column {
+      float: left;
+      margin-left: 3px;
+    }
+
+    .leaflet-legend-expanded .leaflet-legend-contents {
+      display: flex;
+      padding: 6px 15px 6px 6px;
+    }
+
+    .leaflet-legend {
+      background-color: white;
+      opacity: 0.9;
+      font-size: 0.9em;
+      line-height: 0.8em;
+      }
+
+  }
+  
