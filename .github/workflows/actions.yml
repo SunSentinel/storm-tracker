@@ -2,11 +2,12 @@ name: run scraper.py
 
 on:
   schedule:
-  - cron: '5 5,8,11,14,17,20,23 * * *'
+  # - cron: '5 5,8,11,14,17,20,23 * * *'
+  - cron: '0 15 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: execute scraper
     steps:
-      run: python3 /Users/danicajefferies/Desktop/GitHub/storm-tracker/lee/scraper.py
+      run: python3 storm-tracker/lee/scraper.py
