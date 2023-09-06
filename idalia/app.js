@@ -120,7 +120,7 @@ style: function(feature) {
     }
 }
 });
-pointsShp.addTo(map);
+pointsShp.addTo(map).bringToFront();
 
 
 
