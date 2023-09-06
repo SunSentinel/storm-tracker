@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     name: execute scraper
     steps:
-      run: python3 scraper.py
+      run: python3 /Users/danicajefferies/Desktop/GitHub/storm-tracker/lee/scraper.py
