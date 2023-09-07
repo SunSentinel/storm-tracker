@@ -3,14 +3,31 @@ from bs4 import BeautifulSoup
 from zipfile import ZipFile
 import glob
 import os
+from time import sleep
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # import wget
 
 ## FOR A NEW STORM FILE, YOU NEED TO CHANGE LINES 10 AND 11
 stormname = 'lee'
 url = "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al13&year=2023"
+# requests.adapters.DEFAULT_RETRIES = 5
+# s = requests.session()
+# s.keep_alive = False
+# page = s.get(url, timeout=5)
+
+# session = requests.Session()
+# retry = Retry(connect=3, backoff_factor=0.5)
+# adapter = HTTPAdapter(max_retries=retry)
+# session.mount('http://', adapter)
+# session.mount('https://', adapter)
+
+
 page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
+
+
 
 
 anchor = soup.find_all(lambda tag: tag.name=='a' and tag.text.endswith('.zip'))
