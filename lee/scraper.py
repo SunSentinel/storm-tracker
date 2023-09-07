@@ -3,32 +3,16 @@ from bs4 import BeautifulSoup
 from zipfile import ZipFile
 import glob
 import os
-from time import sleep
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
+from urllib3.exceptions import InsecureRequestWarning
 
-# import wget
 
 ## FOR A NEW STORM FILE, YOU NEED TO CHANGE LINES 10 AND 11
 stormname = 'lee'
 url = "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al13&year=2023"
-# requests.adapters.DEFAULT_RETRIES = 5
-# s = requests.session()
-# s.keep_alive = False
-# page = s.get(url, timeout=5)
 
-# session = requests.Session()
-# retry = Retry(connect=3, backoff_factor=0.5)
-# adapter = HTTPAdapter(max_retries=retry)
-# session.mount('http://', adapter)
-# session.mount('https://', adapter)
-
-
-page = requests.get(url)
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+page = requests.get(url, verify=False)
 soup = BeautifulSoup(page.content, "html.parser")
-
-
-
 
 anchor = soup.find_all(lambda tag: tag.name=='a' and tag.text.endswith('.zip'))
 link = anchor[-1].get('href')
@@ -39,13 +23,12 @@ folder = anchor[-1].get_text(strip=True)
 
 landing = "https://www.nhc.noaa.gov/gis/"
 final = landing+link
-# wget.download(final)
 
 ## CLEAR THE EXISTING ZIP FILES
 for olddata in glob.glob(stormname + '/data/*', recursive=True):
     os.remove(olddata)
 
-r = requests.get(final)
+r = requests.get(final, verify=False)
 z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall("./" + stormname + "/data")
 
