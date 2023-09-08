@@ -85,6 +85,7 @@ style: function(feature) {
 trackShp.addTo(map);
 
 
+
 // POINTS
 var pointsZip = "data/points.zip"
 var pointsShp = new L.Shapefile(pointsZip, {
@@ -108,8 +109,7 @@ onEachFeature: function(feature, layer) {
 pointToLayer: function(feature, latlng) {
     return L.circleMarker(latlng, {
         opacity: 1,
-        fillOpacity: 1,
-        color: "black"
+        fillOpacity: 1
     });
 },
 style: function(feature) {
