@@ -3,8 +3,8 @@
 <citation>
 <citeinfo>
 <origin>National Hurricane Center</origin>
-<pubdate>September 08, 2023</pubdate>
-<title>AL132023-014_5day_lin</title>
+<pubdate>September 09, 2023</pubdate>
+<title>AL132023-017_5day_lin</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -20,7 +20,7 @@ and that the effects of a tropical cyclone can span many hundreds of miles from 
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>230908/2100</caldate>
+<caldate>230909/1500</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -115,7 +115,7 @@ and that the effects of a tropical cyclone can span many hundreds of miles from 
 <detailed>
 <enttyp>
 <enttypl>
-AL132023-014_5day_lin</enttypl>
+AL132023-017_5day_lin</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -213,7 +213,7 @@ AL132023-014_5day_lin</enttypl>
 </stdorder>
 </distinfo>
 <metainfo>
-<metd>September 08, 2023</metd>
+<metd>September 09, 2023</metd>
 <metc>
 <cntinfo>
 <cntorgp>
