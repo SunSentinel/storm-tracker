@@ -109,7 +109,8 @@ onEachFeature: function(feature, layer) {
 pointToLayer: function(feature, latlng) {
     return L.circleMarker(latlng, {
         opacity: 1,
-        fillOpacity: 1
+        fillOpacity: 1,
+        color: 'black'
     });
 },
 style: function(feature) {
