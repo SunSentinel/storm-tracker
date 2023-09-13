@@ -3,8 +3,8 @@
 <citation>
 <citeinfo>
 <origin>National Hurricane Center</origin>
-<pubdate>September 12, 2023</pubdate>
-<title>AL132023-028_5day_pts</title>
+<pubdate>September 13, 2023</pubdate>
+<title>AL132023-032A_5day_pts</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -25,7 +25,7 @@ of miles from the center.
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>230912/0900</caldate>
+<caldate>230913/1200</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -121,7 +121,7 @@ of miles from the center.
 <detailed>
 <enttyp>
 <enttypl>
-AL132023-028_5day_pts</enttypl>
+AL132023-032A_5day_pts</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -350,7 +350,7 @@ AL132023-028_5day_pts</enttypl>
 </stdorder>
 </distinfo>
 <metainfo>
-<metd>September 12, 2023</metd>
+<metd>September 13, 2023</metd>
 <metc>
 <cntinfo>
 <cntorgp>
