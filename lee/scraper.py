@@ -63,7 +63,7 @@ with zipfile.ZipFile(stormname + '/data/lin.zip', 'w') as zipF:
 
 # For wind/hurricane advisories
 with zipfile.ZipFile(stormname + '/data/wwlin.zip', 'w') as zipF:
-    for file in glob.glob(stormname + '/data/*5day_wwlin*', recursive=True):
+    for file in glob.glob(stormname + '/data/*ww_wwlin*', recursive=True):
         full_path = file
         relative_path = stormname + '/data'
         zipF.write(file, arcname=os.path.relpath(full_path, relative_path))
