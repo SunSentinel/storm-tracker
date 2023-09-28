@@ -7,8 +7,8 @@ from urllib3.exceptions import InsecureRequestWarning
 
 
 ## FOR A NEW STORM FILE, YOU NEED TO CHANGE LINES 10 AND 11
-stormname = 'nigel'
-url = "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al15&year=2023"
+stormname = 'rina'
+url = "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al18&year=2023"
 
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 page = requests.get(url, verify=False)
