@@ -3,16 +3,15 @@ from bs4 import BeautifulSoup
 from zipfile import ZipFile
 import glob
 import os
-from urllib3.exceptions import InsecureRequestWarning
 
+# import wget
 
 ## FOR A NEW STORM FILE, YOU NEED TO CHANGE LINES 10 AND 11
 stormname = 'test'
 url = "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al01&year=2024"
-
-requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
-page = requests.get(url, verify=False)
+page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
+
 
 anchor = soup.find_all(lambda tag: tag.name=='a' and tag.text.endswith('.zip'))
 link = anchor[-1].get('href')
@@ -23,12 +22,13 @@ folder = anchor[-1].get_text(strip=True)
 
 landing = "https://www.nhc.noaa.gov/gis/"
 final = landing+link
+# wget.download(final)
 
 ## CLEAR THE EXISTING ZIP FILES
 for olddata in glob.glob(stormname + '/data/*', recursive=True):
     os.remove(olddata)
 
-r = requests.get(final, verify=False)
+r = requests.get(final)
 z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall("./" + stormname + "/data")
 
@@ -63,11 +63,10 @@ with zipfile.ZipFile(stormname + '/data/lin.zip', 'w') as zipF:
 
 # For wind/hurricane advisories
 with zipfile.ZipFile(stormname + '/data/wwlin.zip', 'w') as zipF:
-    for file in glob.glob(stormname + '/data/*ww_wwlin*', recursive=True):
+    for file in glob.glob(stormname + '/data/*5day_wwlin*', recursive=True):
         full_path = file
         relative_path = stormname + '/data'
         zipF.write(file, arcname=os.path.relpath(full_path, relative_path))
-
 
 
 
