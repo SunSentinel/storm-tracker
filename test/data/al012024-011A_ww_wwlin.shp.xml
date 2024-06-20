@@ -4,27 +4,24 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>June 20, 2024</pubdate>
-<title>AL012024-011_5day_pgn</title>
+<title>AL012024-011A_ww_wwlin</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
 </citation>
 <descript>
 <abstract>
-The cone represents the probable track of the center of a tropical cyclone, and is formed by 
-enclosing the area swept out by a set of circles along the forecast track (at 12, 24, 36 hours, etc). 
-The size of each circle is set so that two-thirds of historical official forecast errors over a 5-year 
-sample fall within the circle. Based on forecasts over the previous 5 years, the entire track of a 
-tropical cyclone can be expected to remain within the cone roughly 60-70% of the time. It is 
-important to note that the area affected by a tropical cyclone can extend well beyond the 
-confines of the cone enclosing the most likely track area of the center.
+Coastal areas placed under tropical cyclone watches or warnings are delimited by specific 
+geographical locations known as "breakpoints" (e.g., a hurricane warning is in effect from breakpoint 
+"A" to breakpoint "B").  This file consists of one or more lines connecting the breakpoints delimiting 
+any current watches or warnings. 
 </abstract>
-<purpose>The cone represents the probable track of the center of a tropical cyclone.</purpose>
+<purpose>Coastal areas placed under tropical cyclone watches or warnings.</purpose>
 </descript>
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>240620/0900</caldate>
+<caldate>240620/1200</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -36,13 +33,13 @@ confines of the cone enclosing the most likely track area of the center.
 <spdom>
 <bounding>
 <westbc>
--140.0</westbc>
+-85.269997</westbc>
 <eastbc>
-0.0</eastbc>
+-79.269997</eastbc>
 <northbc>
-60.0</northbc>
+33.119999</northbc>
 <southbc>
-0.0</southbc>
+26.940001</southbc>
 </bounding>
 </spdom>
 <keywords>
@@ -95,8 +92,8 @@ confines of the cone enclosing the most likely track area of the center.
 <direct>Vector</direct>
 <ptvctinf>
 <sdtsterm>
-<sdtstype>G-polygon</sdtstype>
-<ptvctcnt>2</ptvctcnt>
+<sdtstype>String</sdtstype>
+<ptvctcnt>3</ptvctcnt>
 </sdtsterm>
 </ptvctinf>
 </spdoinfo>
@@ -119,7 +116,7 @@ confines of the cone enclosing the most likely track area of the center.
 <detailed>
 <enttyp>
 <enttypl>
-AL012024-011_5day_pgn</enttypl>
+AL012024-011A_ww_wwlin</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -140,6 +137,24 @@ AL012024-011_5day_pgn</enttypl>
 <attr>
 <attrlabl>STORMNAME</attrlabl>
 <attrdef>name given to each tropical cyclone for which the National Hurricane Center is writing forecast advisories</attrdef>
+</attr>
+<attr>
+<attrlabl>STORMTYPE</attrlabl>
+<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
+<attrdomv>
+<edom>
+<edomv>TD</edomv>
+<edomvd>Tropical Depression</edomvd>
+</edom>
+<edom>
+<edomv>TS</edomv>
+<edomvd>Tropical Storm</edomvd>
+</edom>
+<edom>
+<edomv>HU</edomv>
+<edomvd>Hurricane</edomvd>
+</edom>
+</attrdomv>
 </attr>
 <attr>
 <attrlabl>ADVDATE</attrlabl>
@@ -180,28 +195,32 @@ AL012024-011_5day_pgn</enttypl>
 </attrdomv>
 </attr>
 <attr>
+<attrlabl>ISSSTATUS</attrlabl>
+</attr>
+<attr>
 <attrlabl>TIMEZONE</attrlabl>
 </attr>
 <attr>
-<attrlabl>STORMTYPE</attrlabl>
-<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
+<attrlabl>TCWW</attrlabl>
+<attrdef>code indicating the type of advisory and severity of conditions</attrdef>
 <attrdomv>
 <edom>
-<edomv>TD</edomv>
-<edomvd>Tropical Depression</edomvd>
+<edomv>HWR</edomv>
+<edomvd>Hurricane Warning</edomvd>
 </edom>
 <edom>
-<edomv>TS</edomv>
-<edomvd>Tropical Storm</edomvd>
+<edomv>HWA</edomv>
+<edomvd>Hurricane Watch</edomvd>
 </edom>
 <edom>
-<edomv>HU</edomv>
-<edomvd>Hurricane</edomvd>
+<edomv>TWA</edomv>
+<edomvd>Tropical Storm Watch</edomvd>
+</edom>
+<edom>
+<edomv>TWR</edomv>
+<edomvd>Tropical Storm Warning</edomvd>
 </edom>
 </attrdomv>
-</attr>
-<attr>
-<attrlabl>ISSSTATUS</attrlabl>
 </attr>
 </detailed>
 </eainfo>
