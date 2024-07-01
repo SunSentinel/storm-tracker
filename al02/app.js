@@ -1,7 +1,7 @@
 // CHANGE THE ZIP FILE HERE
 // var zipfile = "data/al102023_5day_007.zip";
 
-var map = L.map('map').setView([16, -65], 3.5);
+var map = L.map('map').setView([17, -77], 3.5);
 
 // Adding Voyager Basemap
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
