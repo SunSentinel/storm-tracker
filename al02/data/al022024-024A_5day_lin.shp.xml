@@ -4,7 +4,7 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>July 04, 2024</pubdate>
-<title>AL022024-024_5day_lin</title>
+<title>AL022024-024A_5day_lin</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -20,7 +20,7 @@ and that the effects of a tropical cyclone can span many hundreds of miles from 
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>240704/1500</caldate>
+<caldate>240704/1800</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -115,7 +115,7 @@ and that the effects of a tropical cyclone can span many hundreds of miles from 
 <detailed>
 <enttyp>
 <enttypl>
-AL022024-024_5day_lin</enttypl>
+AL022024-024A_5day_lin</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
