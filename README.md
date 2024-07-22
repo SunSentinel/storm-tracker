@@ -1,6 +1,6 @@
 # storm-tracker
 
-This is our open-source hurricane tracker (hopefully temporarily) replacing the serverless Storm-Sentinel and Hurricane-tracker repositories, which were down on three fronts: old links, serverless, as well as mapbox.
+This is our open-source hurricane tracker replacing the serverless Storm-Sentinel and Hurricane-tracker repositories, which were down on three fronts: old links, serverless, as well as mapbox, as of 2023.
 
 If you need an open-source alternative, here it is.
 
