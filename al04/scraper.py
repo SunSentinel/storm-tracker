@@ -7,8 +7,8 @@ import os
 # import wget
 
 ## FOR A NEW STORM FILE, YOU NEED TO CHANGE LINES 10 AND 11
-stormname = 'al03'
-url = "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al03&year=2024"
+stormname = 'al04'
+url = "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al04&year=2024"
 page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
 
