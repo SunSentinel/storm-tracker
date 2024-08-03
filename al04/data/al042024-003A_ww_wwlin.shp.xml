@@ -4,23 +4,24 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>August 03, 2024</pubdate>
-<title>AL042024-003_5day_lin</title>
+<title>AL042024-003A_ww_wwlin</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
 </citation>
 <descript>
 <abstract>
-This product will aid in the visualization of an NHC official track forecast, the forecast points are connected by black line segments.  The track line(s) are not a forecast 
-product, however, and because there are an infinite number of ways to connect a set of forecast points, the lines should not be interpreted as representing a specific forecast 
-for the location of a tropical cyclone in between official forecast points.  It is also important to remember that tropical cyclone track forecasts are subject to error, 
-and that the effects of a tropical cyclone can span many hundreds of miles from the center.</abstract>
-<purpose>The NHC official track forecast in shapefile format is intended to aid in the visualization of an NHC official track forecast</purpose>
+Coastal areas placed under tropical cyclone watches or warnings are delimited by specific 
+geographical locations known as "breakpoints" (e.g., a hurricane warning is in effect from breakpoint 
+"A" to breakpoint "B").  This file consists of one or more lines connecting the breakpoints delimiting 
+any current watches or warnings. 
+</abstract>
+<purpose>Coastal areas placed under tropical cyclone watches or warnings.</purpose>
 </descript>
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>240803/0300</caldate>
+<caldate>240803/0600</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -32,13 +33,13 @@ and that the effects of a tropical cyclone can span many hundreds of miles from 
 <spdom>
 <bounding>
 <westbc>
--140.0</westbc>
+-85.269997</westbc>
 <eastbc>
-0.0</eastbc>
+-79.269997</eastbc>
 <northbc>
-60.0</northbc>
+33.119999</northbc>
 <southbc>
-0.0</southbc>
+26.940001</southbc>
 </bounding>
 </spdom>
 <keywords>
@@ -92,7 +93,7 @@ and that the effects of a tropical cyclone can span many hundreds of miles from 
 <ptvctinf>
 <sdtsterm>
 <sdtstype>String</sdtstype>
-<ptvctcnt>2</ptvctcnt>
+<ptvctcnt>3</ptvctcnt>
 </sdtsterm>
 </ptvctinf>
 </spdoinfo>
@@ -115,7 +116,7 @@ and that the effects of a tropical cyclone can span many hundreds of miles from 
 <detailed>
 <enttyp>
 <enttypl>
-AL042024-003_5day_lin</enttypl>
+AL042024-003A_ww_wwlin</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -136,6 +137,24 @@ AL042024-003_5day_lin</enttypl>
 <attr>
 <attrlabl>STORMNAME</attrlabl>
 <attrdef>name given to each tropical cyclone for which the National Hurricane Center is writing forecast advisories</attrdef>
+</attr>
+<attr>
+<attrlabl>STORMTYPE</attrlabl>
+<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
+<attrdomv>
+<edom>
+<edomv>TD</edomv>
+<edomvd>Tropical Depression</edomvd>
+</edom>
+<edom>
+<edomv>TS</edomv>
+<edomvd>Tropical Storm</edomvd>
+</edom>
+<edom>
+<edomv>HU</edomv>
+<edomvd>Hurricane</edomvd>
+</edom>
+</attrdomv>
 </attr>
 <attr>
 <attrlabl>ADVDATE</attrlabl>
@@ -176,28 +195,32 @@ AL042024-003_5day_lin</enttypl>
 </attrdomv>
 </attr>
 <attr>
+<attrlabl>ISSSTATUS</attrlabl>
+</attr>
+<attr>
 <attrlabl>TIMEZONE</attrlabl>
 </attr>
 <attr>
-<attrlabl>STORMTYPE</attrlabl>
-<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
+<attrlabl>TCWW</attrlabl>
+<attrdef>code indicating the type of advisory and severity of conditions</attrdef>
 <attrdomv>
 <edom>
-<edomv>TD</edomv>
-<edomvd>Tropical Depression</edomvd>
+<edomv>HWR</edomv>
+<edomvd>Hurricane Warning</edomvd>
 </edom>
 <edom>
-<edomv>TS</edomv>
-<edomvd>Tropical Storm</edomvd>
+<edomv>HWA</edomv>
+<edomvd>Hurricane Watch</edomvd>
 </edom>
 <edom>
-<edomv>HU</edomv>
-<edomvd>Hurricane</edomvd>
+<edomv>TWA</edomv>
+<edomvd>Tropical Storm Watch</edomvd>
+</edom>
+<edom>
+<edomv>TWR</edomv>
+<edomvd>Tropical Storm Warning</edomvd>
 </edom>
 </attrdomv>
-</attr>
-<attr>
-<attrlabl>ISSSTATUS</attrlabl>
 </attr>
 </detailed>
 </eainfo>
