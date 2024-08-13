@@ -4,24 +4,27 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>August 12, 2024</pubdate>
-<title>AL052024-005_ww_wwlin</title>
+<title>AL052024-005A_5day_pgn</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
 </citation>
 <descript>
 <abstract>
-Coastal areas placed under tropical cyclone watches or warnings are delimited by specific 
-geographical locations known as "breakpoints" (e.g., a hurricane warning is in effect from breakpoint 
-"A" to breakpoint "B").  This file consists of one or more lines connecting the breakpoints delimiting 
-any current watches or warnings. 
+The cone represents the probable track of the center of a tropical cyclone, and is formed by 
+enclosing the area swept out by a set of circles along the forecast track (at 12, 24, 36 hours, etc). 
+The size of each circle is set so that two-thirds of historical official forecast errors over a 5-year 
+sample fall within the circle. Based on forecasts over the previous 5 years, the entire track of a 
+tropical cyclone can be expected to remain within the cone roughly 60-70% of the time. It is 
+important to note that the area affected by a tropical cyclone can extend well beyond the 
+confines of the cone enclosing the most likely track area of the center.
 </abstract>
-<purpose>Coastal areas placed under tropical cyclone watches or warnings.</purpose>
+<purpose>The cone represents the probable track of the center of a tropical cyclone.</purpose>
 </descript>
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>240812/2100</caldate>
+<caldate>240813/0000</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -33,13 +36,13 @@ any current watches or warnings.
 <spdom>
 <bounding>
 <westbc>
--85.269997</westbc>
+-140.0</westbc>
 <eastbc>
--79.269997</eastbc>
+0.0</eastbc>
 <northbc>
-33.119999</northbc>
+60.0</northbc>
 <southbc>
-26.940001</southbc>
+0.0</southbc>
 </bounding>
 </spdom>
 <keywords>
@@ -92,8 +95,8 @@ any current watches or warnings.
 <direct>Vector</direct>
 <ptvctinf>
 <sdtsterm>
-<sdtstype>String</sdtstype>
-<ptvctcnt>3</ptvctcnt>
+<sdtstype>G-polygon</sdtstype>
+<ptvctcnt>2</ptvctcnt>
 </sdtsterm>
 </ptvctinf>
 </spdoinfo>
@@ -116,7 +119,7 @@ any current watches or warnings.
 <detailed>
 <enttyp>
 <enttypl>
-AL052024-005_ww_wwlin</enttypl>
+AL052024-005A_5day_pgn</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -137,24 +140,6 @@ AL052024-005_ww_wwlin</enttypl>
 <attr>
 <attrlabl>STORMNAME</attrlabl>
 <attrdef>name given to each tropical cyclone for which the National Hurricane Center is writing forecast advisories</attrdef>
-</attr>
-<attr>
-<attrlabl>STORMTYPE</attrlabl>
-<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
-<attrdomv>
-<edom>
-<edomv>TD</edomv>
-<edomvd>Tropical Depression</edomvd>
-</edom>
-<edom>
-<edomv>TS</edomv>
-<edomvd>Tropical Storm</edomvd>
-</edom>
-<edom>
-<edomv>HU</edomv>
-<edomvd>Hurricane</edomvd>
-</edom>
-</attrdomv>
 </attr>
 <attr>
 <attrlabl>ADVDATE</attrlabl>
@@ -195,32 +180,28 @@ AL052024-005_ww_wwlin</enttypl>
 </attrdomv>
 </attr>
 <attr>
-<attrlabl>ISSSTATUS</attrlabl>
-</attr>
-<attr>
 <attrlabl>TIMEZONE</attrlabl>
 </attr>
 <attr>
-<attrlabl>TCWW</attrlabl>
-<attrdef>code indicating the type of advisory and severity of conditions</attrdef>
+<attrlabl>STORMTYPE</attrlabl>
+<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
 <attrdomv>
 <edom>
-<edomv>HWR</edomv>
-<edomvd>Hurricane Warning</edomvd>
+<edomv>TD</edomv>
+<edomvd>Tropical Depression</edomvd>
 </edom>
 <edom>
-<edomv>HWA</edomv>
-<edomvd>Hurricane Watch</edomvd>
+<edomv>TS</edomv>
+<edomvd>Tropical Storm</edomvd>
 </edom>
 <edom>
-<edomv>TWA</edomv>
-<edomvd>Tropical Storm Watch</edomvd>
-</edom>
-<edom>
-<edomv>TWR</edomv>
-<edomvd>Tropical Storm Warning</edomvd>
+<edomv>HU</edomv>
+<edomvd>Hurricane</edomvd>
 </edom>
 </attrdomv>
+</attr>
+<attr>
+<attrlabl>ISSSTATUS</attrlabl>
 </attr>
 </detailed>
 </eainfo>
