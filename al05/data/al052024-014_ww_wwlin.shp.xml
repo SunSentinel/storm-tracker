@@ -3,8 +3,8 @@
 <citation>
 <citeinfo>
 <origin>National Hurricane Center</origin>
-<pubdate>August 14, 2024</pubdate>
-<title>AL052024-013A_ww_wwlin</title>
+<pubdate>August 15, 2024</pubdate>
+<title>AL052024-014_ww_wwlin</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -21,7 +21,7 @@ any current watches or warnings.
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>240815/0000</caldate>
+<caldate>240815/0300</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -116,7 +116,7 @@ any current watches or warnings.
 <detailed>
 <enttyp>
 <enttypl>
-AL052024-013A_ww_wwlin</enttypl>
+AL052024-014_ww_wwlin</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -236,7 +236,7 @@ AL052024-013A_ww_wwlin</enttypl>
 </stdorder>
 </distinfo>
 <metainfo>
-<metd>August 14, 2024</metd>
+<metd>August 15, 2024</metd>
 <metc>
 <cntinfo>
 <cntorgp>
