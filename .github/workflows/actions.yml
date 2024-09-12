@@ -23,7 +23,7 @@ jobs:
           pip3 install -r requirements.txt
           
       - name: execute py script # run scraper.py in the correct storm file
-        run: python3 al06/scraper.py
+        run: python3 al07/scraper.py
           
       - name: commit files
         run: |
