@@ -4,27 +4,23 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>September 15, 2024</pubdate>
-<title>AL072024-016_5day_pgn</title>
+<title>AL072024-017_5day_lin</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
 </citation>
 <descript>
 <abstract>
-The cone represents the probable track of the center of a tropical cyclone, and is formed by 
-enclosing the area swept out by a set of circles along the forecast track (at 12, 24, 36 hours, etc). 
-The size of each circle is set so that two-thirds of historical official forecast errors over a 5-year 
-sample fall within the circle. Based on forecasts over the previous 5 years, the entire track of a 
-tropical cyclone can be expected to remain within the cone roughly 60-70% of the time. It is 
-important to note that the area affected by a tropical cyclone can extend well beyond the 
-confines of the cone enclosing the most likely track area of the center.
-</abstract>
-<purpose>The cone represents the probable track of the center of a tropical cyclone.</purpose>
+This product will aid in the visualization of an NHC official track forecast, the forecast points are connected by black line segments.  The track line(s) are not a forecast 
+product, however, and because there are an infinite number of ways to connect a set of forecast points, the lines should not be interpreted as representing a specific forecast 
+for the location of a tropical cyclone in between official forecast points.  It is also important to remember that tropical cyclone track forecasts are subject to error, 
+and that the effects of a tropical cyclone can span many hundreds of miles from the center.</abstract>
+<purpose>The NHC official track forecast in shapefile format is intended to aid in the visualization of an NHC official track forecast</purpose>
 </descript>
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>240915/0900</caldate>
+<caldate>240915/1500</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -95,7 +91,7 @@ confines of the cone enclosing the most likely track area of the center.
 <direct>Vector</direct>
 <ptvctinf>
 <sdtsterm>
-<sdtstype>G-polygon</sdtstype>
+<sdtstype>String</sdtstype>
 <ptvctcnt>2</ptvctcnt>
 </sdtsterm>
 </ptvctinf>
@@ -119,7 +115,7 @@ confines of the cone enclosing the most likely track area of the center.
 <detailed>
 <enttyp>
 <enttypl>
-AL072024-016_5day_pgn</enttypl>
+AL072024-017_5day_lin</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
