@@ -4,7 +4,7 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>September 17, 2024</pubdate>
-<title>AL072024-023_5day_pts</title>
+<title>AL072024-024_5day_pts</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -25,7 +25,7 @@ of miles from the center.
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>240917/0300</caldate>
+<caldate>240917/0900</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -121,7 +121,7 @@ of miles from the center.
 <detailed>
 <enttyp>
 <enttypl>
-AL072024-023_5day_pts</enttypl>
+AL072024-024_5day_pts</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
