@@ -4,7 +4,7 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>September 25, 2024</pubdate>
-<title>AL092024-008A_5day_pgn</title>
+<title>AL092024-009_5day_pgn</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -24,7 +24,7 @@ confines of the cone enclosing the most likely track area of the center.
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>240925/1200</caldate>
+<caldate>240925/1500</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -119,7 +119,7 @@ confines of the cone enclosing the most likely track area of the center.
 <detailed>
 <enttyp>
 <enttypl>
-AL092024-008A_5day_pgn</enttypl>
+AL092024-009_5day_pgn</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
