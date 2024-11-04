@@ -4,7 +4,7 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>November 04, 2024</pubdate>
-<title>AL182024-004A_ww_wwlin</title>
+<title>AL182024-005_ww_wwlin</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -21,7 +21,7 @@ any current watches or warnings.
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>241104/1800</caldate>
+<caldate>241104/2100</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -116,7 +116,7 @@ any current watches or warnings.
 <detailed>
 <enttyp>
 <enttypl>
-AL182024-004A_ww_wwlin</enttypl>
+AL182024-005_ww_wwlin</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
