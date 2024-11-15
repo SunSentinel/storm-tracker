@@ -4,24 +4,23 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>November 15, 2024</pubdate>
-<title>AL192024-007_ww_wwlin</title>
+<title>AL192024-007A_5day_lin</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
 </citation>
 <descript>
 <abstract>
-Coastal areas placed under tropical cyclone watches or warnings are delimited by specific 
-geographical locations known as "breakpoints" (e.g., a hurricane warning is in effect from breakpoint 
-"A" to breakpoint "B").  This file consists of one or more lines connecting the breakpoints delimiting 
-any current watches or warnings. 
-</abstract>
-<purpose>Coastal areas placed under tropical cyclone watches or warnings.</purpose>
+This product will aid in the visualization of an NHC official track forecast, the forecast points are connected by black line segments.  The track line(s) are not a forecast 
+product, however, and because there are an infinite number of ways to connect a set of forecast points, the lines should not be interpreted as representing a specific forecast 
+for the location of a tropical cyclone in between official forecast points.  It is also important to remember that tropical cyclone track forecasts are subject to error, 
+and that the effects of a tropical cyclone can span many hundreds of miles from the center.</abstract>
+<purpose>The NHC official track forecast in shapefile format is intended to aid in the visualization of an NHC official track forecast</purpose>
 </descript>
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>241115/0900</caldate>
+<caldate>241115/1200</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -33,13 +32,13 @@ any current watches or warnings.
 <spdom>
 <bounding>
 <westbc>
--85.269997</westbc>
+-140.0</westbc>
 <eastbc>
--79.269997</eastbc>
+0.0</eastbc>
 <northbc>
-33.119999</northbc>
+60.0</northbc>
 <southbc>
-26.940001</southbc>
+0.0</southbc>
 </bounding>
 </spdom>
 <keywords>
@@ -93,7 +92,7 @@ any current watches or warnings.
 <ptvctinf>
 <sdtsterm>
 <sdtstype>String</sdtstype>
-<ptvctcnt>3</ptvctcnt>
+<ptvctcnt>2</ptvctcnt>
 </sdtsterm>
 </ptvctinf>
 </spdoinfo>
@@ -116,7 +115,7 @@ any current watches or warnings.
 <detailed>
 <enttyp>
 <enttypl>
-AL192024-007_ww_wwlin</enttypl>
+AL192024-007A_5day_lin</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -137,24 +136,6 @@ AL192024-007_ww_wwlin</enttypl>
 <attr>
 <attrlabl>STORMNAME</attrlabl>
 <attrdef>name given to each tropical cyclone for which the National Hurricane Center is writing forecast advisories</attrdef>
-</attr>
-<attr>
-<attrlabl>STORMTYPE</attrlabl>
-<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
-<attrdomv>
-<edom>
-<edomv>TD</edomv>
-<edomvd>Tropical Depression</edomvd>
-</edom>
-<edom>
-<edomv>TS</edomv>
-<edomvd>Tropical Storm</edomvd>
-</edom>
-<edom>
-<edomv>HU</edomv>
-<edomvd>Hurricane</edomvd>
-</edom>
-</attrdomv>
 </attr>
 <attr>
 <attrlabl>ADVDATE</attrlabl>
@@ -195,32 +176,28 @@ AL192024-007_ww_wwlin</enttypl>
 </attrdomv>
 </attr>
 <attr>
-<attrlabl>ISSSTATUS</attrlabl>
-</attr>
-<attr>
 <attrlabl>TIMEZONE</attrlabl>
 </attr>
 <attr>
-<attrlabl>TCWW</attrlabl>
-<attrdef>code indicating the type of advisory and severity of conditions</attrdef>
+<attrlabl>STORMTYPE</attrlabl>
+<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
 <attrdomv>
 <edom>
-<edomv>HWR</edomv>
-<edomvd>Hurricane Warning</edomvd>
+<edomv>TD</edomv>
+<edomvd>Tropical Depression</edomvd>
 </edom>
 <edom>
-<edomv>HWA</edomv>
-<edomvd>Hurricane Watch</edomvd>
+<edomv>TS</edomv>
+<edomvd>Tropical Storm</edomvd>
 </edom>
 <edom>
-<edomv>TWA</edomv>
-<edomvd>Tropical Storm Watch</edomvd>
-</edom>
-<edom>
-<edomv>TWR</edomv>
-<edomvd>Tropical Storm Warning</edomvd>
+<edomv>HU</edomv>
+<edomvd>Hurricane</edomvd>
 </edom>
 </attrdomv>
+</attr>
+<attr>
+<attrlabl>ISSSTATUS</attrlabl>
 </attr>
 </detailed>
 </eainfo>
