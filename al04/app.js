@@ -124,6 +124,9 @@ pointsShp.addTo(map).bringToFront();
 
 
 
+
+
+
  // LEGEND
 var legend = L.control.legend({
     position: 'bottomright',
@@ -159,6 +162,7 @@ var legend = L.control.legend({
         fillColor: "red",
         radius: 4
 
+        
     }]
 })
 legend.addTo(map);
