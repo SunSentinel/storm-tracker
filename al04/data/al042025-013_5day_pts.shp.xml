@@ -3,8 +3,8 @@
 <citation>
 <citeinfo>
 <origin>National Hurricane Center</origin>
-<pubdate>August 06, 2025</pubdate>
-<title>AL042025-012_5day_pts</title>
+<pubdate>August 07, 2025</pubdate>
+<title>AL042025-013_5day_pts</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -25,7 +25,7 @@ of miles from the center.
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>250806/2100</caldate>
+<caldate>250807/0300</caldate>
 </sngdate>
 </timeinfo>
 <current>Forecast Advisory Date/Time</current>
@@ -121,7 +121,7 @@ of miles from the center.
 <detailed>
 <enttyp>
 <enttypl>
-AL042025-012_5day_pts</enttypl>
+AL042025-013_5day_pts</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -350,7 +350,7 @@ AL042025-012_5day_pts</enttypl>
 </stdorder>
 </distinfo>
 <metainfo>
-<metd>August 06, 2025</metd>
+<metd>August 07, 2025</metd>
 <metc>
 <cntinfo>
 <cntorgp>
