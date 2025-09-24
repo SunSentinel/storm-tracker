@@ -2207,12 +2207,12 @@ exports.STORE = {
     compressInputType: null,
     uncompressInputType: null
 };
-exports.DEFLATE = require('./flate.js');
+exports.DEFLATE = require('./flate');
 
 },{"./flate":16}],12:[function(require,module,exports){
 'use strict';
 
-var utils = require('./utils.js');
+var utils = require('./utils');
 
 var table = [
     0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
@@ -2315,7 +2315,7 @@ module.exports = function crc32(input, crc) {
 
 },{"./utils":29}],13:[function(require,module,exports){
 'use strict';
-var utils = require('./utils.js');
+var utils = require('./utils');
 
 function DataReader(data) {
     this.data = null; // type : see implementation
@@ -2437,7 +2437,7 @@ exports.dosPermissions = null;
 
 },{}],15:[function(require,module,exports){
 'use strict';
-var utils = require('./utils.js');
+var utils = require('./utils');
 
 /**
  * @deprecated
@@ -2563,7 +2563,7 @@ exports.uncompress =  function(input) {
 },{"pako":32}],17:[function(require,module,exports){
 'use strict';
 
-var base64 = require('./base64.js');
+var base64 = require('./base64');
 
 /**
 Usage:
@@ -2611,16 +2611,16 @@ function JSZip(data, options) {
         return newObj;
     };
 }
-JSZip.prototype = require('./object.js');
-JSZip.prototype.load = require('./load.js');
-JSZip.support = require('./support.js');
-JSZip.defaults = require('./defaults.js');
+JSZip.prototype = require('./object');
+JSZip.prototype.load = require('./load');
+JSZip.support = require('./support');
+JSZip.defaults = require('./defaults');
 
 /**
  * @deprecated
  * This namespace will be removed in a future version without replacement.
  */
-JSZip.utils = require('./deprecatedPublicUtils.js');
+JSZip.utils = require('./deprecatedPublicUtils');
 
 JSZip.base64 = {
     /**
@@ -2638,13 +2638,13 @@ JSZip.base64 = {
         return base64.decode(input);
     }
 };
-JSZip.compressions = require('./compressions.js');
+JSZip.compressions = require('./compressions');
 module.exports = JSZip;
 
 },{"./base64":9,"./compressions":11,"./defaults":14,"./deprecatedPublicUtils":15,"./load":18,"./object":21,"./support":25}],18:[function(require,module,exports){
 'use strict';
-var base64 = require('./base64.js');
-var ZipEntries = require('./zipEntries.js');
+var base64 = require('./base64');
+var ZipEntries = require('./zipEntries');
 module.exports = function(data, options) {
     var files, zipEntries, i, input;
     options = options || {};
@@ -2687,7 +2687,7 @@ module.exports.test = function(b){
 }).call(this,require("buffer").Buffer)
 },{"buffer":5}],20:[function(require,module,exports){
 'use strict';
-var Uint8ArrayReader = require('./uint8ArrayReader.js');
+var Uint8ArrayReader = require('./uint8ArrayReader');
 
 function NodeBufferReader(data) {
     this.data = data;
@@ -2709,18 +2709,18 @@ module.exports = NodeBufferReader;
 
 },{"./uint8ArrayReader":26}],21:[function(require,module,exports){
 'use strict';
-var support = require('./support.js');
-var utils = require('./utils.js');
-var crc32 = require('./crc32.js');
-var signature = require('./signature.js');
-var defaults = require('./defaults.js');
-var base64 = require('./base64.js');
-var compressions = require('./compressions.js');
-var CompressedObject = require('./compressedObject.js');
-var nodeBuffer = require('./nodeBuffer.js');
-var utf8 = require('./utf8.js');
-var StringWriter = require('./stringWriter.js');
-var Uint8ArrayWriter = require('./uint8ArrayWriter.js');
+var support = require('./support');
+var utils = require('./utils');
+var crc32 = require('./crc32');
+var signature = require('./signature');
+var defaults = require('./defaults');
+var base64 = require('./base64');
+var compressions = require('./compressions');
+var CompressedObject = require('./compressedObject');
+var nodeBuffer = require('./nodeBuffer');
+var utf8 = require('./utf8');
+var StringWriter = require('./stringWriter');
+var Uint8ArrayWriter = require('./uint8ArrayWriter');
 
 /**
  * Returns the raw data of a ZipObject, decompress the content if necessary.
@@ -3603,8 +3603,8 @@ exports.DATA_DESCRIPTOR = "PK\x07\x08";
 
 },{}],23:[function(require,module,exports){
 'use strict';
-var DataReader = require('./dataReader.js');
-var utils = require('./utils.js');
+var DataReader = require('./dataReader');
+var utils = require('./utils');
 
 function StringReader(data, optimizedBinaryString) {
     this.data = data;
@@ -3642,7 +3642,7 @@ module.exports = StringReader;
 },{"./dataReader":13,"./utils":29}],24:[function(require,module,exports){
 'use strict';
 
-var utils = require('./utils.js');
+var utils = require('./utils');
 
 /**
  * An object to write any content to a string.
@@ -3711,7 +3711,7 @@ else {
 }).call(this,require("buffer").Buffer)
 },{"buffer":5}],26:[function(require,module,exports){
 'use strict';
-var DataReader = require('./dataReader.js');
+var DataReader = require('./dataReader');
 
 function Uint8ArrayReader(data) {
     if (data) {
@@ -3761,7 +3761,7 @@ module.exports = Uint8ArrayReader;
 },{"./dataReader":13}],27:[function(require,module,exports){
 'use strict';
 
-var utils = require('./utils.js');
+var utils = require('./utils');
 
 /**
  * An object to write any content to an Uint8Array.
@@ -3799,9 +3799,9 @@ module.exports = Uint8ArrayWriter;
 },{"./utils":29}],28:[function(require,module,exports){
 'use strict';
 
-var utils = require('./utils.js');
-var support = require('./support.js');
-var nodeBuffer = require('./nodeBuffer.js');
+var utils = require('./utils');
+var support = require('./support');
+var nodeBuffer = require('./nodeBuffer');
 
 /**
  * The following functions come from pako, from pako/lib/utils/strings
@@ -4007,9 +4007,9 @@ exports.utf8decode = function utf8decode(buf) {
 
 },{"./nodeBuffer":19,"./support":25,"./utils":29}],29:[function(require,module,exports){
 'use strict';
-var support = require('./support.js');
-var compressions = require('./compressions.js');
-var nodeBuffer = require('./nodeBuffer.js');
+var support = require('./support');
+var compressions = require('./compressions');
+var nodeBuffer = require('./nodeBuffer');
 /**
  * Convert a string to a "binary string" : a string containing only char codes between 0 and 255.
  * @param {string} str the string to transform.
@@ -4335,14 +4335,14 @@ exports.isRegExp = function (object) {
 
 },{"./compressions":11,"./nodeBuffer":19,"./support":25}],30:[function(require,module,exports){
 'use strict';
-var StringReader = require('./stringReader.js');
-var NodeBufferReader = require('./nodeBufferReader.js');
-var Uint8ArrayReader = require('./uint8ArrayReader.js');
-var utils = require('./utils.js');
-var sig = require('./signature.js');
-var ZipEntry = require('./zipEntry.js');
-var support = require('./support.js');
-var jszipProto = require('./object.js');
+var StringReader = require('./stringReader');
+var NodeBufferReader = require('./nodeBufferReader');
+var Uint8ArrayReader = require('./uint8ArrayReader');
+var utils = require('./utils');
+var sig = require('./signature');
+var ZipEntry = require('./zipEntry');
+var support = require('./support');
+var jszipProto = require('./object');
 //  class ZipEntries {{{
 /**
  * All the entries in the zip file.
@@ -4558,10 +4558,10 @@ module.exports = ZipEntries;
 
 },{"./nodeBufferReader":20,"./object":21,"./signature":22,"./stringReader":23,"./support":25,"./uint8ArrayReader":26,"./utils":29,"./zipEntry":31}],31:[function(require,module,exports){
 'use strict';
-var StringReader = require('./stringReader.js');
-var utils = require('./utils.js');
-var CompressedObject = require('./compressedObject.js');
-var jszipProto = require('./object.js');
+var StringReader = require('./stringReader');
+var utils = require('./utils');
+var CompressedObject = require('./compressedObject');
+var jszipProto = require('./object');
 
 var MADE_BY_DOS = 0x00;
 var MADE_BY_UNIX = 0x03;
@@ -4872,11 +4872,11 @@ module.exports = ZipEntry;
 // Top level file is just a mixin of submodules & constants
 'use strict';
 
-var assign    = require('./lib/utils/common.js').assign;
+var assign    = require('./lib/utils/common').assign;
 
-var deflate   = require('./lib/deflate.js');
-var inflate   = require('./lib/inflate.js');
-var constants = require('./lib/zlib/constants.js');
+var deflate   = require('./lib/deflate');
+var inflate   = require('./lib/inflate');
+var constants = require('./lib/zlib/constants');
 
 var pako = {};
 
@@ -4889,10 +4889,10 @@ module.exports = pako;
 
 
 var zlib_deflate = require('./zlib/deflate.js');
-var utils = require('./utils/common.js');
-var strings = require('./utils/strings.js');
-var msg = require('./zlib/messages.js');
-var zstream = require('./zlib/zstream.js');
+var utils = require('./utils/common');
+var strings = require('./utils/strings');
+var msg = require('./zlib/messages');
+var zstream = require('./zlib/zstream');
 
 var toString = Object.prototype.toString;
 
@@ -5267,12 +5267,12 @@ exports.gzip = gzip;
 
 
 var zlib_inflate = require('./zlib/inflate.js');
-var utils = require('./utils/common.js');
-var strings = require('./utils/strings.js');
-var c = require('./zlib/constants.js');
-var msg = require('./zlib/messages.js');
-var zstream = require('./zlib/zstream.js');
-var gzheader = require('./zlib/gzheader.js');
+var utils = require('./utils/common');
+var strings = require('./utils/strings');
+var c = require('./zlib/constants');
+var msg = require('./zlib/messages');
+var zstream = require('./zlib/zstream');
+var gzheader = require('./zlib/gzheader');
 
 var toString = Object.prototype.toString;
 
@@ -5752,7 +5752,7 @@ exports.setTyped(TYPED_OK);
 'use strict';
 
 
-var utils = require('./common.js');
+var utils = require('./common');
 
 
 // Quick check if we can use fast array to bin string conversion
@@ -6064,10 +6064,10 @@ module.exports = crc32;
 'use strict';
 
 var utils   = require('../utils/common');
-var trees   = require('./trees.js');
-var adler32 = require('./adler32.js');
-var crc32   = require('./crc32.js');
-var msg   = require('./messages.js');
+var trees   = require('./trees');
+var adler32 = require('./adler32');
+var crc32   = require('./crc32');
+var msg   = require('./messages');
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
@@ -8201,10 +8201,10 @@ module.exports = function inflate_fast(strm, start) {
 
 
 var utils = require('../utils/common');
-var adler32 = require('./adler32.js');
-var crc32   = require('./crc32.js');
-var inflate_fast = require('./inffast.js');
-var inflate_table = require('./inftrees.js');
+var adler32 = require('./adler32');
+var crc32   = require('./crc32');
+var inflate_fast = require('./inffast');
+var inflate_table = require('./inftrees');
 
 var CODES = 0;
 var LENS = 1;
@@ -11285,11 +11285,11 @@ module.exports = INTERNAL;
 function INTERNAL() {}
 },{}],49:[function(require,module,exports){
 'use strict';
-var Promise = require('./promise.js');
-var reject = require('./reject.js');
-var resolve = require('./resolve.js');
-var INTERNAL = require('./INTERNAL.js');
-var handlers = require('./handlers.js');
+var Promise = require('./promise');
+var reject = require('./reject');
+var resolve = require('./resolve');
+var INTERNAL = require('./INTERNAL');
+var handlers = require('./handlers');
 module.exports = all;
 function all(iterable) {
   if (Object.prototype.toString.call(iterable) !== '[object Array]') {
@@ -11329,9 +11329,9 @@ function all(iterable) {
 }
 },{"./INTERNAL":48,"./handlers":50,"./promise":52,"./reject":55,"./resolve":56}],50:[function(require,module,exports){
 'use strict';
-var tryCatch = require('./tryCatch.js');
-var resolveThenable = require('./resolveThenable.js');
-var states = require('./states.js');
+var tryCatch = require('./tryCatch');
+var resolveThenable = require('./resolveThenable');
+var states = require('./states');
 
 exports.resolve = function (self, value) {
   var result = tryCatch(getThen, value);
@@ -11375,21 +11375,21 @@ function getThen(obj) {
 }
 
 },{"./resolveThenable":57,"./states":58,"./tryCatch":59}],51:[function(require,module,exports){
-module.exports = exports = require('./promise.js');
+module.exports = exports = require('./promise');
 
-exports.resolve = require('./resolve.js');
-exports.reject = require('./reject.js');
-exports.all = require('./all.js');
-exports.race = require('./race.js');
+exports.resolve = require('./resolve');
+exports.reject = require('./reject');
+exports.all = require('./all');
+exports.race = require('./race');
 
 },{"./all":49,"./promise":52,"./race":54,"./reject":55,"./resolve":56}],52:[function(require,module,exports){
 'use strict';
 
-var unwrap = require('./unwrap.js');
-var INTERNAL = require('./INTERNAL.js');
-var resolveThenable = require('./resolveThenable.js');
-var states = require('./states.js');
-var QueueItem = require('./queueItem.js');
+var unwrap = require('./unwrap');
+var INTERNAL = require('./INTERNAL');
+var resolveThenable = require('./resolveThenable');
+var states = require('./states');
+var QueueItem = require('./queueItem');
 
 module.exports = Promise;
 function Promise(resolver) {
@@ -11428,8 +11428,8 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
 
 },{"./INTERNAL":48,"./queueItem":53,"./resolveThenable":57,"./states":58,"./unwrap":60}],53:[function(require,module,exports){
 'use strict';
-var handlers = require('./handlers.js');
-var unwrap = require('./unwrap.js');
+var handlers = require('./handlers');
+var unwrap = require('./unwrap');
 
 module.exports = QueueItem;
 function QueueItem(promise, onFulfilled, onRejected) {
@@ -11458,11 +11458,11 @@ QueueItem.prototype.otherCallRejected = function (value) {
 
 },{"./handlers":50,"./unwrap":60}],54:[function(require,module,exports){
 'use strict';
-var Promise = require('./promise.js');
-var reject = require('./reject.js');
-var resolve = require('./resolve.js');
-var INTERNAL = require('./INTERNAL.js');
-var handlers = require('./handlers.js');
+var Promise = require('./promise');
+var reject = require('./reject');
+var resolve = require('./resolve');
+var INTERNAL = require('./INTERNAL');
+var handlers = require('./handlers');
 module.exports = race;
 function race(iterable) {
   if (Object.prototype.toString.call(iterable) !== '[object Array]') {
@@ -11500,9 +11500,9 @@ function race(iterable) {
 },{"./INTERNAL":48,"./handlers":50,"./promise":52,"./reject":55,"./resolve":56}],55:[function(require,module,exports){
 'use strict';
 
-var Promise = require('./promise.js');
-var INTERNAL = require('./INTERNAL.js');
-var handlers = require('./handlers.js');
+var Promise = require('./promise');
+var INTERNAL = require('./INTERNAL');
+var handlers = require('./handlers');
 module.exports = reject;
 
 function reject(reason) {
@@ -11512,9 +11512,9 @@ function reject(reason) {
 },{"./INTERNAL":48,"./handlers":50,"./promise":52}],56:[function(require,module,exports){
 'use strict';
 
-var Promise = require('./promise.js');
-var INTERNAL = require('./INTERNAL.js');
-var handlers = require('./handlers.js');
+var Promise = require('./promise');
+var INTERNAL = require('./INTERNAL');
+var handlers = require('./handlers');
 module.exports = resolve;
 
 var FALSE = handlers.resolve(new Promise(INTERNAL), false);
@@ -11546,8 +11546,8 @@ function resolve(value) {
 }
 },{"./INTERNAL":48,"./handlers":50,"./promise":52}],57:[function(require,module,exports){
 'use strict';
-var handlers = require('./handlers.js');
-var tryCatch = require('./tryCatch.js');
+var handlers = require('./handlers');
+var tryCatch = require('./tryCatch');
 function safelyResolveThenable(self, thenable) {
   // Either fulfill, reject or reject with error
   var called = false;
@@ -11604,7 +11604,7 @@ function tryCatch(func, value) {
 'use strict';
 
 var immediate = require('immediate');
-var handlers = require('./handlers.js');
+var handlers = require('./handlers');
 module.exports = unwrap;
 
 function unwrap(promise, func, value) {
@@ -12086,10 +12086,10 @@ Point.prototype.toMGRS = function(accuracy) {
 };
 module.exports = Point;
 },{"mgrs":131}],65:[function(require,module,exports){
-var parseCode = require("./parseCode.js");
-var extend = require('./extend.js');
-var projections = require('./projections.js');
-var deriveConstants = require('./deriveConstants.js');
+var parseCode = require("./parseCode");
+var extend = require('./extend');
+var projections = require('./projections');
+var deriveConstants = require('./deriveConstants');
 
 function Projection(srsCode,callback) {
   if (!(this instanceof Projection)) {
@@ -12175,7 +12175,7 @@ module.exports = function(crs, denorm, point) {
 
 },{}],67:[function(require,module,exports){
 var HALF_PI = Math.PI/2;
-var sign = require('./sign.js');
+var sign = require('./sign');
 
 module.exports = function(x) {
   return (Math.abs(x) < HALF_PI) ? x : (x - (sign(x) * Math.PI));
@@ -12187,7 +12187,7 @@ var TWO_PI = Math.PI * 2;
 // have drifted from their original location along the 180th meridian (due to
 // floating point error) from changing their sign.
 var SPI = 3.14159265359;
-var sign = require('./sign.js');
+var sign = require('./sign');
 
 module.exports = function(x) {
   return (Math.abs(x) <= SPI) ? x : (x - (sign(x) * TWO_PI));
@@ -12322,7 +12322,7 @@ module.exports = function(es) {
   return en;
 };
 },{}],81:[function(require,module,exports){
-var pj_mlfn = require("./pj_mlfn.js");
+var pj_mlfn = require("./pj_mlfn");
 var EPSLN = 1.0e-10;
 var MAX_ITER = 20;
 module.exports = function(arg, es, en) {
@@ -12706,8 +12706,8 @@ exports.ft = {to_meter: 0.3048};
 exports['us-ft'] = {to_meter: 1200 / 3937};
 
 },{}],92:[function(require,module,exports){
-var proj = require('./Proj.js');
-var transform = require('./transform.js');
+var proj = require('./Proj');
+var transform = require('./transform');
 var wgs84 = proj('WGS84');
 
 function transformer(from, to, coords) {
@@ -13278,9 +13278,9 @@ module.exports = function(source, dest, point) {
 
 
 },{}],95:[function(require,module,exports){
-var globals = require('./global.js');
-var parseProj = require('./projString.js');
-var wkt = require('./wkt.js');
+var globals = require('./global');
+var parseProj = require('./projString');
+var wkt = require('./wkt');
 
 function defs(name) {
   /*global console*/
@@ -13335,10 +13335,10 @@ globals(defs);
 module.exports = defs;
 
 },{"./global":98,"./projString":102,"./wkt":130}],96:[function(require,module,exports){
-var Datum = require('./constants/Datum.js');
-var Ellipsoid = require('./constants/Ellipsoid.js');
-var extend = require('./extend.js');
-var datum = require('./datum.js');
+var Datum = require('./constants/Datum');
+var Ellipsoid = require('./constants/Ellipsoid');
+var extend = require('./extend');
+var datum = require('./datum');
 var EPSLN = 1.0e-10;
 // ellipoid pj_set_ell.c
 var SIXTH = 0.1666666666666666667;
@@ -13423,28 +13423,28 @@ module.exports = function(defs) {
 
 },{}],99:[function(require,module,exports){
 var projs = [
-  require('./projections/tmerc.js'),
-  require('./projections/utm.js'),
-  require('./projections/sterea.js'),
-  require('./projections/stere.js'),
-  require('./projections/somerc.js'),
-  require('./projections/omerc.js'),
-  require('./projections/lcc.js'),
-  require('./projections/krovak.js'),
-  require('./projections/cass.js'),
-  require('./projections/laea.js'),
-  require('./projections/aea.js'),
-  require('./projections/gnom.js'),
-  require('./projections/cea.js'),
-  require('./projections/eqc.js'),
-  require('./projections/poly.js'),
-  require('./projections/nzmg.js'),
-  require('./projections/mill.js'),
-  require('./projections/sinu.js'),
-  require('./projections/moll.js'),
-  require('./projections/eqdc.js'),
-  require('./projections/vandg.js'),
-  require('./projections/aeqd.js')
+  require('./projections/tmerc'),
+  require('./projections/utm'),
+  require('./projections/sterea'),
+  require('./projections/stere'),
+  require('./projections/somerc'),
+  require('./projections/omerc'),
+  require('./projections/lcc'),
+  require('./projections/krovak'),
+  require('./projections/cass'),
+  require('./projections/laea'),
+  require('./projections/aea'),
+  require('./projections/gnom'),
+  require('./projections/cea'),
+  require('./projections/eqc'),
+  require('./projections/poly'),
+  require('./projections/nzmg'),
+  require('./projections/mill'),
+  require('./projections/sinu'),
+  require('./projections/moll'),
+  require('./projections/eqdc'),
+  require('./projections/vandg'),
+  require('./projections/aeqd')
 ];
 module.exports = function(proj4){
   projs.forEach(function(proj){
@@ -13452,22 +13452,22 @@ module.exports = function(proj4){
   });
 };
 },{"./projections/aea":104,"./projections/aeqd":105,"./projections/cass":106,"./projections/cea":107,"./projections/eqc":108,"./projections/eqdc":109,"./projections/gnom":111,"./projections/krovak":112,"./projections/laea":113,"./projections/lcc":114,"./projections/mill":117,"./projections/moll":118,"./projections/nzmg":119,"./projections/omerc":120,"./projections/poly":121,"./projections/sinu":122,"./projections/somerc":123,"./projections/stere":124,"./projections/sterea":125,"./projections/tmerc":126,"./projections/utm":127,"./projections/vandg":128}],100:[function(require,module,exports){
-var proj4 = require('./core.js');
+var proj4 = require('./core');
 proj4.defaultDatum = 'WGS84'; //default datum
-proj4.Proj = require('./Proj.js');
+proj4.Proj = require('./Proj');
 proj4.WGS84 = new proj4.Proj('WGS84');
-proj4.Point = require('./Point.js');
-proj4.toPoint = require("./common/toPoint.js");
-proj4.defs = require('./defs.js');
-proj4.transform = require('./transform.js');
+proj4.Point = require('./Point');
+proj4.toPoint = require("./common/toPoint");
+proj4.defs = require('./defs');
+proj4.transform = require('./transform');
 proj4.mgrs = require('mgrs');
 proj4.version = require('../package.json').version;
-require('./includedProjections.js')(proj4);
+require('./includedProjections')(proj4);
 module.exports = proj4;
 },{"../package.json":132,"./Point":64,"./Proj":65,"./common/toPoint":86,"./core":92,"./defs":95,"./includedProjections":99,"./transform":129,"mgrs":131}],101:[function(require,module,exports){
-var defs = require('./defs.js');
-var wkt = require('./wkt.js');
-var projStr = require('./projString.js');
+var defs = require('./defs');
+var wkt = require('./wkt');
+var projStr = require('./projString');
 function testObj(code){
   return typeof code === 'string';
 }
@@ -13503,8 +13503,8 @@ function parse(code){
 module.exports = parse;
 },{"./defs":95,"./projString":102,"./wkt":130}],102:[function(require,module,exports){
 var D2R = 0.01745329251994329577;
-var PrimeMeridian = require('./constants/PrimeMeridian.js');
-var units = require('./constants/units.js');
+var PrimeMeridian = require('./constants/PrimeMeridian');
+var units = require('./constants/units');
 
 module.exports = function(defData) {
   var self = {};
@@ -13637,8 +13637,8 @@ module.exports = function(defData) {
 
 },{"./constants/PrimeMeridian":90,"./constants/units":91}],103:[function(require,module,exports){
 var projs = [
-  require('./projections/merc.js'),
-  require('./projections/longlat.js')
+  require('./projections/merc'),
+  require('./projections/longlat')
 ];
 var names = {};
 var projStore = [];
@@ -16105,7 +16105,7 @@ exports.inverse = function(p) {
 exports.names = ["stere", "Stereographic_South_Pole", "Polar Stereographic (variant B)"];
 
 },{"../common/adjust_lon":68,"../common/msfnz":78,"../common/phi2z":79,"../common/sign":84,"../common/tsfnz":87}],125:[function(require,module,exports){
-var gauss = require('./gauss.js');
+var gauss = require('./gauss');
 var adjust_lon = require('../common/adjust_lon');
 exports.init = function() {
   gauss.init.apply(this);
@@ -16302,7 +16302,7 @@ exports.names = ["Transverse_Mercator", "Transverse Mercator", "tmerc"];
 
 },{"../common/adjust_lon":68,"../common/asinz":69,"../common/e0fn":70,"../common/e1fn":71,"../common/e2fn":72,"../common/e3fn":73,"../common/mlfn":77,"../common/sign":84}],127:[function(require,module,exports){
 var D2R = 0.01745329251994329577;
-var tmerc = require('./tmerc.js');
+var tmerc = require('./tmerc');
 exports.dependsOn = 'tmerc';
 exports.init = function() {
   if (!this.zone) {
@@ -16446,10 +16446,10 @@ var D2R = 0.01745329251994329577;
 var R2D = 57.29577951308232088;
 var PJD_3PARAM = 1;
 var PJD_7PARAM = 2;
-var datum_transform = require('./datum_transform.js');
-var adjust_axis = require('./adjust_axis.js');
-var proj = require('./Proj.js');
-var toPoint = require('./common/toPoint.js');
+var datum_transform = require('./datum_transform');
+var adjust_axis = require('./adjust_axis');
+var proj = require('./Proj');
+var toPoint = require('./common/toPoint');
 module.exports = function transform(source, dest, point) {
   var wgs84;
   if (Array.isArray(point)) {
@@ -16516,7 +16516,7 @@ module.exports = function transform(source, dest, point) {
 };
 },{"./Proj":65,"./adjust_axis":66,"./common/toPoint":86,"./datum_transform":94}],130:[function(require,module,exports){
 var D2R = 0.01745329251994329577;
-var extend = require('./extend.js');
+var extend = require('./extend');
 
 function mapit(obj, key, v) {
   obj[key] = v.map(function(aa) {
@@ -17585,10 +17585,10 @@ module.exports={
 (function (Buffer){
 'use strict';
 var proj4 = require('proj4');
-var unzip = require('./unzip.js');
-var binaryAjax = require('./binaryajax.js');
-var parseShp = require('./parseShp.js');
-var toArrayBuffer = require('./toArrayBuffer.js');
+var unzip = require('./unzip');
+var binaryAjax = require('./binaryajax');
+var parseShp = require('./parseShp');
+var toArrayBuffer = require('./toArrayBuffer');
 var parseDbf = require('parsedbf');
 var Promise = require('lie');
 var Cache = require('lru-cache');
