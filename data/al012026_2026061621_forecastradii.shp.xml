@@ -2,33 +2,39 @@
 <idinfo>
 <citation>
 <citeinfo>
-<origin>National Hurricane Center</origin>
+<origin>ISSUER</origin>
 <pubdate>June 16, 2026</pubdate>
-<title>al012026_2026061618_initialradii</title>
+<title>al012026_2026061621_forecastradii</title>
 <geoform>vector digital data</geoform>
-<onlink>http://www.nhc.noaa.gov/gis</onlink>
+<onlink>GIS_URL</onlink>
 </citeinfo>
 </citation>
 <descript>
 <abstract>
-The surface wind field is a smoothed region showing the farthest extent from the 
-center of 34-, 50-, and 64-knot winds in each quadrant of a tropical cyclone at the 
-time an advisory is issued.  Consequently, it is not an exact representation of 
-the wind field.
+The forecast wind radii are the farthest extent from the center of 34-, 50-, and 64-knot 
+winds in each quadrant of a tropical cyclone expected for each forecast period.  Consequently, 
+they are not an exact representation of the expected wind field.
 </abstract>
 <purpose>
-This surface wind field is intended to show the areas potentially being affected
-by sustained winds of tropical storm force (34 knot), 50 knot and and hurricane force
-(64 knot) winds from a tropical cyclone. These data are based on the wind radii contained
-in the associated Forecast/Advisory.  Users are reminded that the Forecast/Advisory wind
-radii represent the maximum possible extent of a given wind speed within particular
-quadrants around the tropical cyclone. As a result, not all locations falling
-within the radii will be experiencing the indicated wind speeds.
+The forecast wind radii are intended to show the expected size of the storm and the areas 
+potentially affected by sustained winds of tropical storm force (34 Knot), 50 knot and 
+hurricane force (64 knot) from a tropical cyclone.  
 
-These data are intended for geographic display and analysis at the national level
-and for large regional areas.  The data should be displayed and analyzed at scales
-appropriate for 1:2,000,000-scale data.  No responsibility is assumed
-by the National Oceanic and Atmospheric Administration in the use of these data.
+- Tropical storm force (34 Knot) radii are forecasted through 72  hours, 
+- 50 knot radii are forecasted through 72 hours and 
+- hurricane force (64 Knot) radii are forecasted through 36 hours
+
+NHC does not forecast wind radii beyond these times. Consequently, tropical cyclones may
+be forecasted at certain intensities without the corresponding wind radii.
+
+Users are reminded that the offical wind radii forecast represents the maximum possible extent 
+of a given wind speed within a particular quadrant.  As a result, not all locations falling within 
+the radii will necessarily experience the indicated wind speeds.
+
+These data are intended for geographic display and analysis at the national level and for large 
+regional areas.  The data should be displayed and analyzed at scales appropriate for 
+1:2,000,000-scale data.  No responsibility is assumed by the National Oceanic and Atmospheric 
+Administration in the use of these data.
 </purpose>
 </descript>
 <timeperd>
@@ -90,7 +96,7 @@ by the National Oceanic and Atmospheric Administration in the use of these data.
 <cntinfo>
 <cntperp>
 <cntper>GIS POC</cntper>
-<cntorg>National Hurricane Center / Technical Support Branch</cntorg>
+<cntorg>ISSUER</cntorg>
 </cntperp>
 <cntaddr>
 <addrtype>physical address</addrtype>
@@ -108,7 +114,7 @@ by the National Oceanic and Atmospheric Administration in the use of these data.
 <ptvctinf>
 <sdtsterm>
 <sdtstype>Entity point</sdtstype>
-<ptvctcnt>1</ptvctcnt>
+<ptvctcnt>9</ptvctcnt>
 </sdtsterm>
 </ptvctinf>
 </spdoinfo>
@@ -131,7 +137,7 @@ by the National Oceanic and Atmospheric Administration in the use of these data.
 <detailed>
 <enttyp>
 <enttypl>
-al012026_2026061618_initialradii</enttypl>
+al012026_2026061621_forecastradii</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -244,7 +250,7 @@ analyzed, occurring at 0000, 0600, 1200, or 1800 UTC.
 <metc>
 <cntinfo>
 <cntorgp>
-<cntorg>National Hurricane Center</cntorg>
+<cntorg>ISSUER</cntorg>
 <cntper>GIS POC</cntper>
 </cntorgp>
 <cntpos>Technical Support Branch</cntpos>
