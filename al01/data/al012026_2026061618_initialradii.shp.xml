@@ -4,7 +4,7 @@
 <citeinfo>
 <origin>National Hurricane Center</origin>
 <pubdate>June 16, 2026</pubdate>
-<title>al012026_2026061615_initialradii</title>
+<title>al012026_2026061618_initialradii</title>
 <geoform>vector digital data</geoform>
 <onlink>http://www.nhc.noaa.gov/gis</onlink>
 </citeinfo>
@@ -131,7 +131,7 @@ by the National Oceanic and Atmospheric Administration in the use of these data.
 <detailed>
 <enttyp>
 <enttypl>
-al012026_2026061615_initialradii</enttypl>
+al012026_2026061618_initialradii</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
