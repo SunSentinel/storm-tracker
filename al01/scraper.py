@@ -4,6 +4,12 @@ import glob
 import os
 import shutil
 
+# --- NEW: FORCE PYTHON TO USE THIS SCRIPT'S DIRECTORY ---
+# This guarantees the data folder is created inside al01
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
+# --------------------------------------------------------
+
 ## CHANGE THESE VARIABLES FOR THE ACTIVE STORM
 stormname = 'al01' 
 year = '2026'
