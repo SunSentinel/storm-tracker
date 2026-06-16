@@ -1,0 +1,8 @@
+# Python Virtual Environments
+venv/
+env/
+.env/
+__pycache__/
+
+# Mac OS junk files
+.DS_Store

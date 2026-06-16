@@ -4,11 +4,10 @@ import glob
 import os
 import shutil
 
-# --- NEW: FORCE PYTHON TO USE THIS SCRIPT'S DIRECTORY ---
-# This guarantees the data folder is created inside al01
+# --- FORCE PYTHON TO USE THIS SCRIPT'S DIRECTORY ---
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
-# --------------------------------------------------------
+# ---------------------------------------------------
 
 ## CHANGE THESE VARIABLES FOR THE ACTIVE STORM
 stormname = 'al01' 
@@ -21,7 +20,7 @@ soup = BeautifulSoup(page.content, "html.parser")
 # 1. Get ONLY the zip files that have '5day' in their name
 anchors = soup.find_all(lambda tag: tag.name=='a' and '5day' in tag.text and tag.text.endswith('.zip'))
 
-# 2. Filter out intermediate advisories (e.g., 001A.zip) by ensuring the last character before .zip is a number
+# 2. Filter out intermediate advisories (e.g., 001A.zip)
 full_advisories = [a for a in anchors if a.text.replace('.zip', '')[-1].isdigit()]
 
 if not full_advisories:
@@ -59,9 +58,21 @@ with zipfile.ZipFile('data/lin.zip', 'w') as zipF:
     for file in glob.glob('data/**/*5day_lin*', recursive=True):
         zipF.write(file, arcname=os.path.relpath(file, 'data'))
 
-# For wind/hurricane advisories
+# For wind/hurricane advisories 
 with zipfile.ZipFile('data/wwlin.zip', 'w') as zipF:
-    for file in glob.glob('data/**/*5day_wwlin*', recursive=True):
-        zipF.write(file, arcname=os.path.relpath(file, 'data'))
+    for file in glob.glob('data/**/*wwlin*', recursive=True):
+        if not file.endswith('.zip'): # <-- THIS PREVENTS THE ZIP BOMB
+            zipF.write(file, arcname=os.path.relpath(file, 'data'))
 
-print(f"Successfully processed and saved data for {stormname.upper()}!")
+# --- NEW: CLEANUP RAW FILES ---
+# Keep only our 4 generated zip files to keep the GitHub repo small
+allowed_zips = ['points.zip', 'pgn.zip', 'lin.zip', 'wwlin.zip']
+for item in os.listdir('data'):
+    if item not in allowed_zips:
+        item_path = os.path.join('data', item)
+        if os.path.isdir(item_path):
+            shutil.rmtree(item_path)
+        else:
+            os.remove(item_path)
+
+print(f"Successfully processed, cleaned, and saved data for {stormname.upper()}!")
