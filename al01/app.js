@@ -112,83 +112,64 @@ var pointsShp = new L.Shapefile(pointsZip, {
         }
     },
     pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, {
-            opacity: 1,
-            fillOpacity: 1,
-            color: "black"
+        // Grab the letter from the shapefile (D, S, H, or M)
+        var letter = feature.properties.DVLBL;
+        
+        // Dynamically assign the CSS class we made in app.css
+        var customClass = "storm-icon icon-" + letter;
+        
+        // Create the HTML-based icon
+        var stormIcon = L.divIcon({
+            className: customClass,
+            html: letter,
+            iconSize: [18, 18], // 18px width and height
+            iconAnchor: [9, 9]  // Centers the icon perfectly over the coordinate (half of 18)
         });
-    },
-    style: function(feature) {
-        switch(feature.properties.DVLBL) {
-            case 'D' : return {radius: 1};
-            case 'S' : return {radius: 2};
-            case 'H' : return {radius: 3};
-            case 'M' : return {radius: 4, color: "red"};
-        }
+        
+        // Return a standard marker using our custom icon
+        return L.marker(latlng, { icon: stormIcon });
     }
 });
 pointsShp.addTo(map).bringToFront();
 
 
 
- // LEGEND
-var legend = L.control.legend({
-    position: 'bottomright',
-    collapsed: false,
-    symbolWidth: 16,
-    opacity: 0.9,
-    column: 2,
-    legends: [{
-        label: "Storm path",
-        type: "circle",
-        fillColor: "#3d9da4",
-        opacity: 0.5,
-        radius: 6
-    },
-    {
-        label: "Tropical storm, winds 39 to 73 mph",
-        type: "circle",
-        color: "black",
-        fillColor: "black",
-        radius: 2
-    },
-    {
-        label: "Hurricane, winds 74 to 110 mph",
-        type: "circle",
-        color: "black",
-        fillColor: "black",
-        radius: 3
-    },
-    {
-        label: "Major hurricane, winds over 110 mph",
-        type: "circle",
-        color: "red",
-        fillColor: "red",
-        radius: 4
-    },
-    {
-        label: "Tropical storm watch",
-        type: "polyline",
-        color: "#FBB631",
-        weight: 4,
-    },
-    {
-        label: "Tropical storm warning",
-        type: "polyline",
-        color: "#136383",
-        weight: 4,
-    },
-    {
-        label: "Hurricane watch",
-        type: "polyline",
-        color: "#ee6d4a",
-        weight: 4,
-    },
-    {
-        label: "Hurricane warning",
-        type: "polyline",
-        color: "#d80000",
-        weight: 4,
-    }]
-})
+// LEGEND (Native Leaflet HTML Control)
+var legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function (map) {
+    // Create a div with standard leaflet control styling
+    var div = L.DomUtil.create('div', 'leaflet-legend leaflet-bar leaflet-control');
+    
+    // Inline styling for a clean, readable box
+    div.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+    div.style.padding = '10px';
+    div.style.lineHeight = '1.8em';
+    div.style.color = '#333';
+
+    var html = '';
+
+    // 1. Storm Points (Reusing your new CSS classes!)
+    html += '<strong>Storm Status</strong><br>';
+    html += '<div class="storm-icon icon-D" style="display:inline-block; width:18px; height:18px; margin-right:6px; vertical-align:middle;">D</div> Tropical depression<br>';
+    html += '<div class="storm-icon icon-S" style="display:inline-block; width:18px; height:18px; margin-right:6px; vertical-align:middle;">S</div> Tropical storm<br>';
+    html += '<div class="storm-icon icon-H" style="display:inline-block; width:18px; height:18px; margin-right:6px; vertical-align:middle;">H</div> Hurricane<br>';
+    html += '<div class="storm-icon icon-M" style="display:inline-block; width:18px; height:18px; margin-right:6px; vertical-align:middle;">M</div> Major hurricane<br>';
+
+    // 2. Watches & Warnings
+    html += '<br><strong>Watches & Warnings</strong><br>';
+    html += '<div style="display:inline-block; width:18px; height:4px; background-color:#FBB631; margin-right:6px; vertical-align:middle;"></div> Tropical storm watch<br>';
+    html += '<div style="display:inline-block; width:18px; height:4px; background-color:#136383; margin-right:6px; vertical-align:middle;"></div> Tropical storm warning<br>';
+    html += '<div style="display:inline-block; width:18px; height:4px; background-color:#ee6d4a; margin-right:6px; vertical-align:middle;"></div> Hurricane watch<br>';
+    html += '<div style="display:inline-block; width:18px; height:4px; background-color:#d80000; margin-right:6px; vertical-align:middle;"></div> Hurricane warning<br>';
+
+    // 3. Path & Cone
+    html += '<br><strong>Path</strong><br>';
+    html += '<div style="display:inline-block; width:18px; height:18px; background-color:#3d9da4; opacity:0.5; border-radius:50%; margin-right:6px; vertical-align:middle;"></div> Storm cone<br>';
+    html += '<div style="display:inline-block; width:18px; height:2px; background-color:black; margin-right:6px; vertical-align:middle;"></div> Storm track<br>';
+
+    div.innerHTML = html;
+    return div;
+};
+
 legend.addTo(map);
