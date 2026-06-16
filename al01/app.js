@@ -6,17 +6,20 @@ var map = L.map('map').setView([27.176, -92.87], 4.5);
 // Adding Voyager Basemap
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-	subdomains: 'abcd',
-	maxZoom: 18
+    subdomains: 'abcd',
+    maxZoom: 18
 }).addTo(map);
 
 // var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 //     g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
+// Add a unique timestamp to prevent the browser from caching old data
+var cacheBuster = "?v=" + new Date().getTime();
+
 
 // Try loading layers in as different shapefiles
 // WIND WARNINGS
-var wwlinZip = "data/wwlin.zip"
+var wwlinZip = "data/wwlin.zip" + cacheBuster;
 var wwlinShp = new L.Shapefile(wwlinZip, {
     onEachFeature: function(feature, layer) {
         if (feature.properties) {
@@ -55,7 +58,7 @@ wwlinShp.addTo(map);
 
 
 // CONE
-var coneZip = "data/pgn.zip"
+var coneZip = "data/pgn.zip" + cacheBuster;
 var coneShp = new L.Shapefile(coneZip, {
 style: function(feature) {
     return {
@@ -68,8 +71,9 @@ style: function(feature) {
 });
 coneShp.addTo(map);
 
+
 // TRACK
-var trackZip = "data/lin.zip"
+var trackZip = "data/lin.zip" + cacheBuster;
 var trackShp = new L.Shapefile(trackZip, {
 style: function(feature) {
     return {
@@ -85,7 +89,7 @@ trackShp.addTo(map);
 
 
 // POINTS
-var pointsZip = "data/points.zip"
+var pointsZip = "data/points.zip" + cacheBuster;
 var pointsShp = new L.Shapefile(pointsZip, {
 onEachFeature: function(feature, layer) {
     if (feature.properties) {
@@ -122,8 +126,8 @@ style: function(feature) {
 });
 pointsShp.addTo(map).bringToFront();
 
-/*
 
+/*
  // LEGEND
 var legend = L.control.legend({
     position: 'bottomright',
@@ -185,6 +189,4 @@ var legend = L.control.legend({
     }]
 })
 legend.addTo(map);
-
 */
-
