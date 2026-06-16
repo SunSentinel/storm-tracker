@@ -14,8 +14,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.p
 //     g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 
-// Add a unique timestamp to prevent the browser from caching old data
-var cacheBuster = "?v=" + new Date().getTime();
+// Add a unique timestamp AND a fake .zip fragment to trick the parser
+var cacheBuster = "?v=" + new Date().getTime() + "#.zip";
 
 
 // Try loading layers in as different shapefiles
