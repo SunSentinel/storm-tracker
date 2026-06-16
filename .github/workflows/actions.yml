@@ -10,7 +10,7 @@ jobs:
     steps:
 
       - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content to github runner
+        uses: actions/checkout@v4 # checkout the repository content to github runner (updated to v4)
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -23,7 +23,9 @@ jobs:
           pip3 install -r requirements.txt
           
       - name: execute py script # run scraper.py in the correct storm file
-        run: python3 al01/scraper.py
+        run: |
+          cd al01
+          python3 scraper.py
           
       - name: commit files
         run: |
@@ -36,5 +38,4 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            branch: main 
-
+            branch: main

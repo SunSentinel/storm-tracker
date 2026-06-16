@@ -13,61 +13,60 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.p
 // var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 //     g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
+
 // Add a unique timestamp to prevent the browser from caching old data
 var cacheBuster = "?v=" + new Date().getTime();
 
 
 // Try loading layers in as different shapefiles
+
 // WIND WARNINGS
 var wwlinZip = "data/wwlin.zip" + cacheBuster;
 var wwlinShp = new L.Shapefile(wwlinZip, {
     onEachFeature: function(feature, layer) {
-        if (feature.properties) {
-            layer.bindTooltip(Object.keys(feature.properties.TCWW[0]).map(function(){
-                switch(feature.properties.TCWW) {
-                    case 'TWA' : return "Tropical storm watch, as of " + feature.properties.ADVDATE;
-                    case 'TWR' : return "Tropical storm warning, as of " + feature.properties.ADVDATE;
-                    case 'HWA' : return "Hurricane watch, as of " + feature.properties.ADVDATE;
-                    case 'HWR' : return "Hurricane warning, as of " + feature.properties.ADVDATE;
-                    case 'SWA' : return "Storm surge watch, as of " + feature.properties.ADVDATE;
-                    case 'SWR' : return "Storm surge warning, as of " + feature.properties.ADVDATE;
-                }
-            }).join("<br />"), {
-                maxHeight: 40
-            });
+        if (feature.properties && feature.properties.TCWW) {
+            var status = "";
+            switch(feature.properties.TCWW) {
+                case 'TWA': status = "Tropical storm watch"; break;
+                case 'TWR': status = "Tropical storm warning"; break;
+                case 'HWA': status = "Hurricane watch"; break;
+                case 'HWR': status = "Hurricane warning"; break;
+                case 'SWA': status = "Storm surge watch"; break;
+                case 'SWR': status = "Storm surge warning"; break;
+            }
+            if (status) {
+                layer.bindTooltip(status + ", as of " + feature.properties.ADVDATE, { maxHeight: 40 });
+            }
         }
-        // console.log(Object.keys(feature.properties.TCWW[0]))
-        console.log(feature.properties.TCWW)
     },
     style: function(feature) {
         switch (feature.properties.TCWW) {
             case 'TWA': return {color: "#FBB631"}; //tropical storm watch
-            case 'TWR':   return {color: "#136383"}; //tropical storm warning
-            case 'HWA':   return {color: "#ee6d4a"}; //hurricane watch
-            case 'HWR':   return {color: "#D80000"}; //hurricane warning
-            case 'SWA':   return {color: "#61b8bf"}; //storm surge watch ?? CODE
-            case 'SWR':   return {color: "#0000ff"}; //storm surge warning ?? CODE
+            case 'TWR': return {color: "#136383"}; //tropical storm warning
+            case 'HWA': return {color: "#ee6d4a"}; //hurricane watch
+            case 'HWR': return {color: "#D80000"}; //hurricane warning
+            case 'SWA': return {color: "#61b8bf"}; //storm surge watch 
+            case 'SWR': return {color: "#0000ff"}; //storm surge warning 
         }
     },
     stroke: true,
     weight: 4,
     opacity: 0.9
  });
-
 wwlinShp.addTo(map);
 
 
 // CONE
 var coneZip = "data/pgn.zip" + cacheBuster;
 var coneShp = new L.Shapefile(coneZip, {
-style: function(feature) {
-    return {
-        opacity: 0.5,
-        fillOpacity: 0.5,
-        stroke: false,
-        color: "#3d9da4"
+    style: function(feature) {
+        return {
+            opacity: 0.5,
+            fillOpacity: 0.5,
+            stroke: false,
+            color: "#3d9da4"
+        }
     }
-}
 });
 coneShp.addTo(map);
 
@@ -75,54 +74,58 @@ coneShp.addTo(map);
 // TRACK
 var trackZip = "data/lin.zip" + cacheBuster;
 var trackShp = new L.Shapefile(trackZip, {
-style: function(feature) {
-    return {
-        opacity: 1,
-        fillOpacity: 1,
-        stroke: true,
-        weight: 1.75,
-        color: "black"
+    style: function(feature) {
+        return {
+            opacity: 1,
+            fillOpacity: 1,
+            stroke: true,
+            weight: 1.75,
+            color: "black"
+        }
     }
-}
 });
 trackShp.addTo(map);
+
+// Automatically zoom and pan to the storm track once it loads
+trackShp.once("data:loaded", function() {
+    if (trackShp.getBounds().isValid()) {
+        map.fitBounds(trackShp.getBounds(), { padding: [50, 50] });
+    }
+});
 
 
 // POINTS
 var pointsZip = "data/points.zip" + cacheBuster;
 var pointsShp = new L.Shapefile(pointsZip, {
-onEachFeature: function(feature, layer) {
-    if (feature.properties) {
-         // PREV: layer.bindTooltip(Object.keys(feature.properties.DVLBL).map(function(k) {
-        layer.bindTooltip(Object.keys(feature.properties.DVLBL[0]).map(function() {
+    onEachFeature: function(feature, layer) {
+        if (feature.properties && feature.properties.DVLBL) {
+            var status = "";
             switch(feature.properties.DVLBL) {
-                case 'D' : return "Status: Tropical depression, winds under 39 mph <br /> Expected: " + feature.properties.DATELBL;
-                case 'S' : return "Status: Tropical storm, winds between 39 to 73 mph <br /> Expected: " + feature.properties.DATELBL;
-                case 'H' : return "Status: Hurricane, winds between 74 and 110 mph <br /> Expected: " + feature.properties.DATELBL;
-                case 'M' : return "Status: Major hurricane, winds greater than 110 mph <br /> Expected: " + feature.properties.DATELBL;
+                case 'D' : status = "Status: Tropical depression, winds under 39 mph"; break;
+                case 'S' : status = "Status: Tropical storm, winds between 39 to 73 mph"; break;
+                case 'H' : status = "Status: Hurricane, winds between 74 and 110 mph"; break;
+                case 'M' : status = "Status: Major hurricane, winds greater than 110 mph"; break;
             }
-        })
-        .join("<br />"), {
-            maxHeight: 50
+            if (status) {
+                layer.bindTooltip(status + "<br /> Expected: " + feature.properties.DATELBL, { maxHeight: 50 });
+            }
+        }
+    },
+    pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, {
+            opacity: 1,
+            fillOpacity: 1,
+            color: "black"
         });
-        // console.log(feature.properties)
+    },
+    style: function(feature) {
+        switch(feature.properties.DVLBL) {
+            case 'D' : return {radius: 1};
+            case 'S' : return {radius: 2};
+            case 'H' : return {radius: 3};
+            case 'M' : return {radius: 4, color: "red"};
+        }
     }
-},
-pointToLayer: function(feature, latlng) {
-    return L.circleMarker(latlng, {
-        opacity: 1,
-        fillOpacity: 1,
-        color: "black"
-    });
-},
-style: function(feature) {
-    switch(feature.properties.DVLBL) {
-        case 'D' : return {radius: 1};
-        case 'S' : return {radius: 2};
-        case 'H' : return {radius: 3};
-        case 'M' : return {radius: 4, color: "red"};
-    }
-}
 });
 pointsShp.addTo(map).bringToFront();
 
