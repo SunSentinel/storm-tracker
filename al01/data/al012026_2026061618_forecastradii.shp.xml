@@ -2,32 +2,48 @@
 <idinfo>
 <citation>
 <citeinfo>
-<origin>National Hurricane Center</origin>
-<pubdate>June 25, 2025</pubdate>
-<title>AL012025-003_5day_pgn</title>
+<origin>ISSUER</origin>
+<pubdate>June 16, 2026</pubdate>
+<title>al012026_2026061618_forecastradii</title>
 <geoform>vector digital data</geoform>
-<onlink>http://www.nhc.noaa.gov/gis</onlink>
+<onlink>GIS_URL</onlink>
 </citeinfo>
 </citation>
 <descript>
 <abstract>
-The cone represents the probable track of the center of a tropical cyclone, and is formed by 
-enclosing the area swept out by a set of circles along the forecast track (at 12, 24, 36 hours, etc). 
-The size of each circle is set so that two-thirds of historical official forecast errors over a 5-year 
-sample fall within the circle. Based on forecasts over the previous 5 years, the entire track of a 
-tropical cyclone can be expected to remain within the cone roughly 60-70% of the time. It is 
-important to note that the area affected by a tropical cyclone can extend well beyond the 
-confines of the cone enclosing the most likely track area of the center.
+The forecast wind radii are the farthest extent from the center of 34-, 50-, and 64-knot 
+winds in each quadrant of a tropical cyclone expected for each forecast period.  Consequently, 
+they are not an exact representation of the expected wind field.
 </abstract>
-<purpose>The cone represents the probable track of the center of a tropical cyclone.</purpose>
+<purpose>
+The forecast wind radii are intended to show the expected size of the storm and the areas 
+potentially affected by sustained winds of tropical storm force (34 Knot), 50 knot and 
+hurricane force (64 knot) from a tropical cyclone.  
+
+- Tropical storm force (34 Knot) radii are forecasted through 72  hours, 
+- 50 knot radii are forecasted through 72 hours and 
+- hurricane force (64 Knot) radii are forecasted through 36 hours
+
+NHC does not forecast wind radii beyond these times. Consequently, tropical cyclones may
+be forecasted at certain intensities without the corresponding wind radii.
+
+Users are reminded that the offical wind radii forecast represents the maximum possible extent 
+of a given wind speed within a particular quadrant.  As a result, not all locations falling within 
+the radii will necessarily experience the indicated wind speeds.
+
+These data are intended for geographic display and analysis at the national level and for large 
+regional areas.  The data should be displayed and analyzed at scales appropriate for 
+1:2,000,000-scale data.  No responsibility is assumed by the National Oceanic and Atmospheric 
+Administration in the use of these data.
+</purpose>
 </descript>
 <timeperd>
 <timeinfo>
 <sngdate>
-<caldate>250625/0300</caldate>
+<caldate>June 16, 2026</caldate>
 </sngdate>
 </timeinfo>
-<current>Forecast Advisory Date/Time</current>
+<current></current>
 </timeperd>
 <status>
 <progress>Complete</progress>
@@ -48,6 +64,8 @@ confines of the cone enclosing the most likely track area of the center.
 <keywords>
 <theme>
 <themekt>None</themekt>
+<themekey>Wind Radii</themekey>
+<themekey>Wind Swath</themekey>
 <themekey>Hurricane</themekey>
 <themekey>Hurricane Track</themekey>
 <themekey>Tropical Storm</themekey>
@@ -78,7 +96,7 @@ confines of the cone enclosing the most likely track area of the center.
 <cntinfo>
 <cntperp>
 <cntper>GIS POC</cntper>
-<cntorg>National Hurricane Center / Technical Support Branch</cntorg>
+<cntorg>ISSUER</cntorg>
 </cntperp>
 <cntaddr>
 <addrtype>physical address</addrtype>
@@ -95,8 +113,8 @@ confines of the cone enclosing the most likely track area of the center.
 <direct>Vector</direct>
 <ptvctinf>
 <sdtsterm>
-<sdtstype>G-polygon</sdtstype>
-<ptvctcnt>2</ptvctcnt>
+<sdtstype>Entity point</sdtstype>
+<ptvctcnt>9</ptvctcnt>
 </sdtsterm>
 </ptvctinf>
 </spdoinfo>
@@ -119,7 +137,7 @@ confines of the cone enclosing the most likely track area of the center.
 <detailed>
 <enttyp>
 <enttypl>
-AL012025-003_5day_pgn</enttypl>
+al012026_2026061618_forecastradii</enttypl>
 </enttyp>
 <attr>
 <attrlabl>FID</attrlabl>
@@ -138,36 +156,34 @@ AL012025-003_5day_pgn</enttypl>
 </attrdomv>
 </attr>
 <attr>
-<attrlabl>STORMNAME</attrlabl>
-<attrdef>name given to each tropical cyclone for which the National Hurricane Center is writing forecast advisories</attrdef>
-</attr>
-<attr>
-<attrlabl>ADVDATE</attrlabl>
-<attrdef>the date in which an advisory is issued</attrdef>
-</attr>
-<attr>
-<attrlabl>ADVISNUM</attrlabl>
-<attrdef>the sequential numbering of forecast advisories for each tropical cyclone</attrdef>
-</attr>
-<attr>
-<attrlabl>STORMNUM</attrlabl>
-<attrdef>the sequential numbering of tropical cyclones for a specific forecast basin according to when the first advisory is issued</attrdef>
-</attr>
-<attr>
-<attrlabl>FCSTPRD</attrlabl>
-<attrdef>the time interval for which the forecast of a tropical cyclone is provided in graphical format</attrdef>
+<attrlabl>RADII</attrlabl>
+<attrdef>The wind speed in knots associated with the bounding polygon.</attrdef>
 <attrdomv>
 <edom>
-<edomv>72</edomv>
+<edomv>34</edomv>
+<edomvd>34 Knot- Tropical Storm Force Wind Radii</edomvd>
 </edom>
 <edom>
-<edomv>120</edomv>
+<edomv>50</edomv>
+<edomvd>50 Knot - 50 Knot Wind Radii</edomvd>
+</edom>
+<edom>
+<edomv>64</edomv>
+<edomvd>64 Knot - Hurricane Force Wind Radii</edomvd>
 </edom>
 </attrdomv>
 </attr>
 <attr>
+<attrlabl>STORMID</attrlabl>
+<attrdef>A unique character string that is specific to each tropical cyclone.  
+The string follows the pattern BBNNYYYY, where BB is AL for Atlantic, EP for East Pacific, 
+and CP for Central Pacific; NN is the sequential number of the storm during the season; 
+and YYYY is the year.
+</attrdef>
+</attr>
+<attr>
 <attrlabl>BASIN</attrlabl>
-<attrdef>the ocean where the tropical cyclone is located</attrdef>
+<attrdef>The ocean where the tropical cyclone is located</attrdef>
 <attrdomv>
 <edom>
 <edomv>AL</edomv>
@@ -180,28 +196,41 @@ AL012025-003_5day_pgn</enttypl>
 </attrdomv>
 </attr>
 <attr>
-<attrlabl>TIMEZONE</attrlabl>
+<attrlabl>STORMNUM</attrlabl>
+<attrdef>The sequential number of the tropical cyclone for a particular BASIN according 
+to the time that the first advisory is issued.
+</attrdef>
 </attr>
 <attr>
-<attrlabl>STORMTYPE</attrlabl>
-<attrdef>category of the tropical cyclone according to the initial intensity</attrdef>
-<attrdomv>
-<edom>
-<edomv>TD</edomv>
-<edomvd>Tropical Depression</edomvd>
-</edom>
-<edom>
-<edomv>TS</edomv>
-<edomvd>Tropical Storm</edomvd>
-</edom>
-<edom>
-<edomv>HU</edomv>
-<edomvd>Hurricane</edomvd>
-</edom>
-</attrdomv>
+<attrlabl>SYNOPTIME</attrlabl>
+<attrdef>Initial time in the forecast cycle in which a tropical cyclone’s intensity and size are 
+analyzed, occurring at 0000, 0600, 1200, or 1800 UTC.
+</attrdef>
 </attr>
 <attr>
-<attrlabl>ISSSTATUS</attrlabl>
+<attrlabl>TAU</attrlabl>
+<attrdef>Number of hours from the forecast valid time for which a forecast is made.</attrdef>
+</attr>
+<attr>
+<attrlabl>VALIDTIME</attrlabl>
+<attrdef>the time in which a forecast or warning is in effect, until it is updated or superseded by a new forecast issuance
+</attrdef>
+</attr>
+<attr>
+<attrlabl>NE</attrlabl>
+<attrdef>The largest distance of wind speed in Nautical Miles in the NE (0 - 90 degree) quadrant.</attrdef>
+</attr>
+<attr>
+<attrlabl>SE</attrlabl>
+<attrdef>The largest distance of wind speed in Nautical Miles in the SE (90 - 180 degree) quadrant.</attrdef>
+</attr>
+<attr>
+<attrlabl>SW</attrlabl>
+<attrdef>The largest distance of wind speed in Nautical Miles in the SW (180 - 270 degree) quadrant.</attrdef>
+</attr>
+<attr>
+<attrlabl>NW</attrlabl>
+<attrdef>The largest distance of wind speed in Nautical Miles in the NW (270 - 360 degree) quadrant.</attrdef>
 </attr>
 </detailed>
 </eainfo>
@@ -217,11 +246,11 @@ AL012025-003_5day_pgn</enttypl>
 </stdorder>
 </distinfo>
 <metainfo>
-<metd>June 25, 2025</metd>
+<metd>June 16, 2026</metd>
 <metc>
 <cntinfo>
 <cntorgp>
-<cntorg>National Hurricane Center</cntorg>
+<cntorg>ISSUER</cntorg>
 <cntper>GIS POC</cntper>
 </cntorgp>
 <cntpos>Technical Support Branch</cntpos>
