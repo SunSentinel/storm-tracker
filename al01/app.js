@@ -122,7 +122,7 @@ style: function(feature) {
 });
 pointsShp.addTo(map).bringToFront();
 
-
+/*
 
  // LEGEND
 var legend = L.control.legend({
@@ -186,5 +186,5 @@ var legend = L.control.legend({
 })
 legend.addTo(map);
 
-
+*/
 
