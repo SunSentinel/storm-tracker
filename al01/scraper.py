@@ -1,6 +1,5 @@
 import requests, zipfile, io
 from bs4 import BeautifulSoup
-from zipfile import ZipFile
 import glob
 import os
 import shutil
@@ -13,8 +12,15 @@ url = f"https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id={stormname}
 page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
 
-anchor = soup.find_all(lambda tag: tag.name=='a' and tag.text.endswith('.zip'))
-link = anchor[-1].get('href')
+# Get all zip links
+anchors = soup.find_all(lambda tag: tag.name=='a' and tag.text.endswith('.zip'))
+
+# FILTER OUT INTERMEDIATE ADVISORIES ("A")
+# Intermediate advisories only update points/warnings and DO NOT contain track/cone shapefiles
+full_advisories = [a for a in anchors if not a.text.replace('.zip', '').endswith('A')]
+
+# Grab the latest FULL advisory
+link = full_advisories[-1].get('href')
 
 landing = "https://www.nhc.noaa.gov/gis/"
 final = landing + link
