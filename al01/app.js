@@ -130,7 +130,7 @@ var pointsShp = new L.Shapefile(pointsZip, {
 pointsShp.addTo(map).bringToFront();
 
 
-/*
+
  // LEGEND
 var legend = L.control.legend({
     position: 'bottomright',
@@ -192,4 +192,3 @@ var legend = L.control.legend({
     }]
 })
 legend.addTo(map);
-*/
