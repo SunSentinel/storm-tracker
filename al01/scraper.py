@@ -12,14 +12,17 @@ url = f"https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id={stormname}
 page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
 
-# Get all zip links
-anchors = soup.find_all(lambda tag: tag.name=='a' and tag.text.endswith('.zip'))
+# 1. Get ONLY the zip files that have '5day' in their name
+anchors = soup.find_all(lambda tag: tag.name=='a' and '5day' in tag.text and tag.text.endswith('.zip'))
 
-# FILTER OUT INTERMEDIATE ADVISORIES ("A")
-# Intermediate advisories only update points/warnings and DO NOT contain track/cone shapefiles
-full_advisories = [a for a in anchors if not a.text.replace('.zip', '').endswith('A')]
+# 2. Filter out intermediate advisories (e.g., 001A.zip) by ensuring the last character before .zip is a number
+full_advisories = [a for a in anchors if a.text.replace('.zip', '')[-1].isdigit()]
 
-# Grab the latest FULL advisory
+if not full_advisories:
+    print(f"Error: No full 5-day advisories found for {stormname.upper()} {year}.")
+    exit()
+
+# 3. Grab the latest FULL 5-day advisory
 link = full_advisories[-1].get('href')
 
 landing = "https://www.nhc.noaa.gov/gis/"
@@ -34,8 +37,6 @@ print(f"Downloading data from: {final}")
 r = requests.get(final)
 z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall("./data")
-
-# Note the ** added to the glob paths to search inside the NHC subfolders!
 
 # For the time points
 with zipfile.ZipFile('data/points.zip', 'w') as zipF:
