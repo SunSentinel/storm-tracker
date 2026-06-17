@@ -2,8 +2,8 @@
 
 var map = L.map('map').setView([27.176, -92.87], 4.5);
 
-// Adding Voyager Basemap
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+// Adding CartoDB Positron (Light & Minimal Basemap)
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 18
