@@ -96,4 +96,103 @@ var pointsShp = new L.Shapefile(pointsZip, {
             switch(feature.properties.DVLBL) {
                 case 'D' : status = "Status: Tropical depression, winds under 39 mph"; break;
                 case 'S' : status = "Status: Tropical storm, winds between 39 to 73 mph"; break;
-                case 'H' : status = "Status: Hurricane, winds between 74 and
+                case 'H' : status = "Status: Hurricane, winds between 74 and 110 mph"; break;
+                case 'M' : status = "Status: Major hurricane, winds greater than 110 mph"; break;
+            }
+            if (status) {
+                layer.bindTooltip(status + "<br /> Expected: " + feature.properties.DATELBL, { maxHeight: 50 });
+            }
+        }
+    },
+    pointToLayer: function(feature, latlng) {
+        // Grab the letter from the shapefile (D, S, H, or M)
+        var letter = feature.properties.DVLBL;
+        
+        // Dynamically assign the CSS class defined in app.css
+        var customClass = "storm-icon icon-" + letter;
+        
+        // Create the HTML-based icon
+        var stormIcon = L.divIcon({
+            className: customClass,
+            html: letter,
+            iconSize: [18, 18], // 18px width and height
+            iconAnchor: [9, 9]  // Centers icon perfectly over coordinate
+        });
+        
+        // Return a standard marker using our custom icon
+        return L.marker(latlng, { icon: stormIcon });
+    }
+});
+pointsShp.addTo(map).bringToFront();
+
+
+// --- 5. NATIVE COLLAPSIBLE LEGEND ---
+var legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function (map) {
+    // Create the main container
+    var div = L.DomUtil.create('div', 'leaflet-legend leaflet-bar leaflet-control');
+    div.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+    div.style.padding = '10px';
+    div.style.lineHeight = '1.8em';
+    div.style.color = '#333';
+    
+    // Prevent clicking the legend from clicking the map underneath
+    L.DomEvent.disableClickPropagation(div);
+
+    // Create the clickable header
+    var header = L.DomUtil.create('div', 'legend-header', div);
+    header.style.cursor = 'pointer';
+    header.style.textAlign = 'center';
+    
+    // Create the content container
+    var content = L.DomUtil.create('div', 'legend-content', div);
+
+    var html = '';
+    // Storm Points
+    html += '<div style="text-align: left; margin-top: 5px;">';
+    html += '<strong>Storm Status</strong><br>';
+    html += '<div class="storm-icon icon-D" style="display:inline-block; width:18px; height:18px; margin-right:6px; vertical-align:middle;">D</div> Tropical depression<br>';
+    html += '<div class="storm-icon icon-S" style="display:inline-block; width:18px; height:18px; margin-right:6px; vertical-align:middle;">S</div> Tropical storm<br>';
+    html += '<div class="storm-icon icon-H" style="display:inline-block; width:18px; height:18px; margin-right:6px; vertical-align:middle;">H</div> Hurricane<br>';
+    html += '<div class="storm-icon icon-M" style="display:inline-block; width:18px; height:18px; margin-right:6px; vertical-align:middle;">M</div> Major hurricane<br>';
+
+    // Watches & Warnings
+    html += '<br><strong>Watches & Warnings</strong><br>';
+    html += '<div style="display:inline-block; width:18px; height:4px; background-color:#FBB631; margin-right:6px; vertical-align:middle;"></div> Tropical storm watch<br>';
+    html += '<div style="display:inline-block; width:18px; height:4px; background-color:#136383; margin-right:6px; vertical-align:middle;"></div> Tropical storm warning<br>';
+    html += '<div style="display:inline-block; width:18px; height:4px; background-color:#ee6d4a; margin-right:6px; vertical-align:middle;"></div> Hurricane watch<br>';
+    html += '<div style="display:inline-block; width:18px; height:4px; background-color:#d80000; margin-right:6px; vertical-align:middle;"></div> Hurricane warning<br>';
+
+    // Path & Cone
+    html += '<br><strong>Path</strong><br>';
+    html += '<div style="display:inline-block; width:18px; height:18px; background-color:#3d9da4; opacity:0.5; border-radius:50%; margin-right:6px; vertical-align:middle;"></div> Storm cone<br>';
+    html += '<div style="display:inline-block; width:18px; height:2px; background-color:black; margin-right:6px; vertical-align:middle;"></div> Storm track<br>';
+    html += '</div>';
+
+    content.innerHTML = html;
+
+    // Toggle logic function
+    header.onclick = function() {
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            header.innerHTML = '<strong>Legend &#9660;</strong>'; // Down arrow
+        } else {
+            content.style.display = 'none';
+            header.innerHTML = '<strong>Legend &#9650;</strong>'; // Up arrow
+        }
+    };
+
+    // Responsive design toggle (Auto-collapses on screens narrower than 450px)
+    if (window.innerWidth <= 450) {
+        content.style.display = 'none';
+        header.innerHTML = '<strong>Legend &#9650;</strong>'; 
+    } else {
+        content.style.display = 'block';
+        header.innerHTML = '<strong>Legend &#9660;</strong>'; 
+    }
+
+    return div;
+};
+
+legend.addTo(map);
