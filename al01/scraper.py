@@ -10,7 +10,7 @@ os.chdir(script_dir)
 # ---------------------------------------------------
 
 ## CHANGE THESE VARIABLES FOR THE ACTIVE STORM
-stormname = 'al01' 
+stormname = 'al02' 
 year = '2026'
 
 url = f"https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id={stormname}&year={year}"
