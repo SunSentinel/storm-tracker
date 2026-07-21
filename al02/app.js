@@ -82,7 +82,8 @@ trackShp.addTo(map);
 // Automatically zoom and pan to the storm track once data loads
 trackShp.once("data:loaded", function() {
     if (trackShp.getBounds().isValid()) {
-        map.fitBounds(trackShp.getBounds(), { padding: [50, 50] });
+        // Increased padding from [50, 50] to [120, 120] for a wider view around the storm
+        map.fitBounds(trackShp.getBounds(), { padding: [100, 100] });
     }
 });
 
