@@ -1,6 +1,7 @@
 name: run scraper.py
 
 on:
+  workflow_dispatch: # Allows you to manually trigger the scraper anytime from GitHub
   schedule:
     - cron: '3 * * * *' # Every hour, at 3 min past the hour
 
@@ -10,29 +11,28 @@ jobs:
     steps:
 
       - name: checkout repo content
-        uses: actions/checkout@v4 # checkout the repository content to github runner (updated to v4)
+        uses: actions/checkout@v4
 
       - name: setup python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11' # install the python version needed
+          python-version: '3.11'
           
       - name: install python packages
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install -r requirements.txt
+          pip install -r requirements.txt
           
-      - name: execute py script # run scraper.py in the correct storm file
+      - name: execute py script
         run: |
-          cd al01
-          python3 scraper.py
+          python3 scraper.py # Runs directly at the root level for AL02
           
       - name: commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          git diff-index --quiet HEAD || (git commit -a -m "Auto-update storm data [skip ci]" --allow-empty)
           
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
