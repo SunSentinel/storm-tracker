@@ -1,7 +1,7 @@
 name: run scraper.py
 
 on:
-  workflow_dispatch: # Allows you to manually trigger the scraper anytime from GitHub
+  workflow_dispatch: # Allows manual trigger from GitHub UI
   schedule:
     - cron: '3 * * * *' # Every hour, at 3 min past the hour
 
@@ -23,9 +23,10 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: execute py script
+      - name: execute al02 scraper
         run: |
-          python3 scraper.py # Runs directly at the root level for AL02
+          cd al02
+          python3 scraper.py
           
       - name: commit files
         run: |
