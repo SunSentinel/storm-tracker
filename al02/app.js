@@ -14,7 +14,7 @@ var cacheBuster = "?v=" + new Date().getTime() + "#.zip";
 
 
 // --- 1. WIND WATCHES & WARNINGS ---
-var wwlinZip = "data/wwlin.zip" + cacheBuster;
+var wwlinZip = "./data/wwlin.zip" + cacheBuster;
 var wwlinShp = new L.Shapefile(wwlinZip, {
     onEachFeature: function(feature, layer) {
         if (feature.properties && feature.properties.TCWW) {
@@ -50,7 +50,7 @@ wwlinShp.addTo(map);
 
 
 // --- 2. CONE OF UNCERTAINTY ---
-var coneZip = "data/pgn.zip" + cacheBuster;
+var coneZip = "./data/pgn.zip" + cacheBuster;
 var coneShp = new L.Shapefile(coneZip, {
     style: function(feature) {
         return {
@@ -65,7 +65,7 @@ coneShp.addTo(map);
 
 
 // --- 3. STORM TRACK LINE ---
-var trackZip = "data/lin.zip" + cacheBuster;
+var trackZip = "./data/lin.zip" + cacheBuster;
 var trackShp = new L.Shapefile(trackZip, {
     style: function(feature) {
         return {
@@ -88,7 +88,7 @@ trackShp.once("data:loaded", function() {
 
 
 // --- 4. FORECAST POINTS (CUSTOM ALPHABETIC MARKERS) ---
-var pointsZip = "data/points.zip" + cacheBuster;
+var pointsZip = "./data/points.zip" + cacheBuster;
 var pointsShp = new L.Shapefile(pointsZip, {
     onEachFeature: function(feature, layer) {
         if (feature.properties && feature.properties.DVLBL) {
