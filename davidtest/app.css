@@ -105,3 +105,21 @@ body {
 		height: 475px;
 	}
 }
+
+/* Custom Storm Point Icons */
+.storm-icon {
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+    line-height: 18px; /* Matches icon height to vertically center the text */
+    border-radius: 50%; /* Turns the square div into a perfect circle */
+    border: 1px solid white; /* Adds a crisp border to stand out against the map */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5); /* Subtle drop shadow */
+}
+
+/* Background colors based on storm status */
+.icon-D, .icon-S { background-color: #808080; } /* Grey */
+.icon-H { background-color: #000000; } /* Black */
+.icon-M { background-color: #d80000; } /* Red (matches your warning line red) */
