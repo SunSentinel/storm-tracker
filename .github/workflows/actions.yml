@@ -23,17 +23,18 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: execute al02 scraper
+      - name: execute storm scrapers
         run: |
-          cd al02
-          python3 scraper.py
+          cd al02 && python3 scraper.py && cd ..
+          cd al03 && python3 scraper.py && cd ..
+          cd al04 && python3 scraper.py && cd ..
           
       - name: commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git diff-index --quiet HEAD || git commit -m "Auto-update al02 storm data"
+          git diff-index --quiet HEAD || git commit -m "Auto-update active storm data (al02, al03, al04)"
           
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
