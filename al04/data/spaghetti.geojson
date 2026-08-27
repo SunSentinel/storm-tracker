@@ -4,8 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "model": "GFS",
-        "color": "#e41a1c"
+        "model": "GFS"
       },
       "geometry": {
         "type": "LineString",
@@ -1480,8 +1479,7 @@
     {
       "type": "Feature",
       "properties": {
-        "model": "NAVGEM",
-        "color": "#ff7f00"
+        "model": "NAVGEM"
       },
       "geometry": {
         "type": "LineString",
@@ -2376,8 +2374,7 @@
     {
       "type": "Feature",
       "properties": {
-        "model": "HMON",
-        "color": "#4daf4a"
+        "model": "HMON"
       },
       "geometry": {
         "type": "LineString",
@@ -2756,8 +2753,7 @@
     {
       "type": "Feature",
       "properties": {
-        "model": "HWRF",
-        "color": "#984ea3"
+        "model": "HWRF"
       },
       "geometry": {
         "type": "LineString",

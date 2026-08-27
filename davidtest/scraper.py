@@ -13,7 +13,8 @@ DATA_DIR = os.path.join(SCRIPT_DIR, 'data')
 
 # ---------------------------------------------------
 # CHANGE THESE VARIABLES FOR THE ACTIVE STORM
-stormname = 'al03' 
+stormname = 'al04' 
+invest_id = 'al96' # Fallback for UCAR models before they switch to the named storm
 year = '2026'
 # ---------------------------------------------------
 
@@ -50,22 +51,18 @@ z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall(DATA_DIR)
 
 # --- 7. REPACKAGE ZIPS ---
-# Points
 with zipfile.ZipFile(os.path.join(DATA_DIR, 'points.zip'), 'w') as zipF:
     for file in glob.glob(f"{DATA_DIR}/**/*5day_pts*", recursive=True):
         zipF.write(file, arcname=os.path.relpath(file, DATA_DIR))
 
-# Cone
 with zipfile.ZipFile(os.path.join(DATA_DIR, 'pgn.zip'), 'w') as zipF:
     for file in glob.glob(f"{DATA_DIR}/**/*5day_pgn*", recursive=True):
         zipF.write(file, arcname=os.path.relpath(file, DATA_DIR))
 
-# Track
 with zipfile.ZipFile(os.path.join(DATA_DIR, 'lin.zip'), 'w') as zipF:
     for file in glob.glob(f"{DATA_DIR}/**/*5day_lin*", recursive=True):
         zipF.write(file, arcname=os.path.relpath(file, DATA_DIR))
 
-# Wind warnings
 with zipfile.ZipFile(os.path.join(DATA_DIR, 'wwlin.zip'), 'w') as zipF:
     for file in glob.glob(f"{DATA_DIR}/**/*wwlin*", recursive=True):
         if not file.endswith('.zip'):
@@ -74,17 +71,23 @@ with zipfile.ZipFile(os.path.join(DATA_DIR, 'wwlin.zip'), 'w') as zipF:
 # --- 8. FETCH & CONVERT SPAGHETTI MODEL DATA (ATCF -> GeoJSON) ---
 print(f"Fetching spaghetti model guidance for {stormname.upper()}...")
 
-# Target major forecast models (GFS, ECMWF, HWRF, HMON, NVGM/Navgem, ICON, UKMET)
 TRACKED_MODELS = {'AVNO': 'GFS', 'EMX': 'ECMWF', 'HMNI': 'HMON', 'HWFI': 'HWRF', 'NVGM': 'NAVGEM', 'ICON': 'ICON', 'UKM': 'UKMET'}
 MODEL_COLORS = {'GFS': '#e41a1c', 'ECMWF': '#377eb8', 'HMON': '#4daf4a', 'HWRF': '#984ea3', 'NAVGEM': '#ff7f00', 'ICON': '#ffff33', 'UKMET': '#a65628'}
 
-# UCAR/RAL real-time ATCF data URL structure
-atcf_url = f"https://www.ral.ucar.edu/hurricanes/realtime/plots/northatlantic/{year}/{stormname.lower()}/a{stormname.lower()}{year}.dat"
+# Define both URLs
+primary_atcf_url = f"https://hurricanes.ral.ucar.edu/realtime/plots/northatlantic/{year}/{stormname.lower()}{year}/a{stormname.lower()}{year}.dat"
+fallback_atcf_url = f"https://hurricanes.ral.ucar.edu/realtime/plots/northatlantic/{year}/{invest_id.lower()}{year}/a{invest_id.lower()}{year}.dat"
 
 try:
-    atcf_resp = requests.get(atcf_url, timeout=10)
-    features = []
+    # Try the official named storm URL first
+    atcf_resp = requests.get(primary_atcf_url, timeout=10)
+    
+    # If UCAR hasn't switched over yet, fallback to the Invest ID
+    if atcf_resp.status_code != 200:
+        print(f"Primary UCAR URL not found. Falling back to Invest ID {invest_id.upper()}...")
+        atcf_resp = requests.get(fallback_atcf_url, timeout=10)
 
+    features = []
     if atcf_resp.status_code == 200:
         model_tracks = {}
         lines = atcf_resp.text.strip().split('\n')
@@ -98,12 +101,10 @@ try:
                     lat_raw = parts[6]
                     lon_raw = parts[7]
 
-                    # Parse Latitude (e.g., 257N -> 25.7)
                     lat = float(lat_raw[:-1]) / 10.0
                     if lat_raw.endswith('S'):
                         lat = -lat
 
-                    # Parse Longitude (e.g., 801W -> -80.1)
                     lon = float(lon_raw[:-1]) / 10.0
                     if lon_raw.endswith('W'):
                         lon = -lon
@@ -111,12 +112,10 @@ try:
                     if model_label not in model_tracks:
                         model_tracks[model_label] = []
                     
-                    # Avoid duplicate sequential coordinates
                     coord = [lon, lat]
                     if not model_tracks[model_label] or model_tracks[model_label][-1] != coord:
                         model_tracks[model_label].append(coord)
 
-        # Build GeoJSON Features
         for model_label, coords in model_tracks.items():
             if len(coords) > 1:
                 features.append({
@@ -136,7 +135,6 @@ try:
         "features": features
     }
 
-    # Save spaghetti.geojson to data/
     spaghetti_path = os.path.join(DATA_DIR, 'spaghetti.geojson')
     with open(spaghetti_path, 'w') as f:
         json.dump(geojson_data, f, indent=2)

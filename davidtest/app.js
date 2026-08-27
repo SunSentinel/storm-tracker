@@ -2,8 +2,8 @@
 
 var map = L.map('map').setView([27.176, -92.87], 4.5);
 
-// Adding CartoDB Positron (Light & Minimal Basemap)
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+// Adding CartoDB Positron (Light & Minimal Basemap) - Now with API Key
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_2cv5_1_a7200e47d8bf0ea75d99f6fc', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 18
@@ -28,10 +28,10 @@ fetch('./data/spaghetti.geojson?v=' + new Date().getTime())
             var spaghettiGeoJson = L.geoJSON(data, {
                 style: function(feature) {
                     return {
-                        color: feature.properties.color || '#666666',
-                        weight: 2,
+                        color: '#aaaaaa', // Clean, subtle light grey shade for all models
+                        weight: 1.5,
                         opacity: 0.65,
-                        dashArray: '4, 4' // Subtle dashed look for secondary models
+                        dashArray: '4, 4' // Subtle dashed line styling
                     };
                 },
                 onEachFeature: function(feature, layer) {
@@ -45,6 +45,9 @@ fetch('./data/spaghetti.geojson?v=' + new Date().getTime())
             });
             spaghettiLayerGroup.addLayer(spaghettiGeoJson);
             spaghettiLayerGroup.addTo(map);
+
+            // Send spaghetti layer to the background so NHC track & cone stay on top
+            spaghettiGeoJson.bringToBack();
         }
     })
     .catch(function(err) {
@@ -202,10 +205,7 @@ legend.onAdd = function (map) {
     // Spaghetti Models Section & Toggle
     html += '<br><strong>Computer Models</strong><br>';
     html += '<label style="cursor:pointer; user-select:none;"><input type="checkbox" id="toggleSpaghetti" checked style="vertical-align:middle; margin-right:5px;"> Show spaghetti lines</label><br>';
-    html += '<div style="display:inline-block; width:14px; height:0px; border-top:2px dashed #e41a1c; margin-right:4px; vertical-align:middle;"></div> GFS ';
-    html += '<div style="display:inline-block; width:14px; height:0px; border-top:2px dashed #377eb8; margin-right:4px; margin-left:6px; vertical-align:middle;"></div> Euro (ECMWF)<br>';
-    html += '<div style="display:inline-block; width:14px; height:0px; border-top:2px dashed #984ea3; margin-right:4px; vertical-align:middle;"></div> HWRF ';
-    html += '<div style="display:inline-block; width:14px; height:0px; border-top:2px dashed #4daf4a; margin-right:4px; margin-left:6px; vertical-align:middle;"></div> HMON<br>';
+    html += '<div style="display:inline-block; width:18px; height:0px; border-top:2px dashed #aaaaaa; margin-right:6px; vertical-align:middle;"></div> Computer models<br>';
 
     html += '</div>';
 
@@ -242,6 +242,9 @@ setTimeout(function() {
         toggle.addEventListener('change', function(e) {
             if (e.target.checked) {
                 map.addLayer(spaghettiLayerGroup);
+                spaghettiLayerGroup.eachLayer(function(layer) {
+                    if (layer.bringToBack) layer.bringToBack();
+                });
             } else {
                 map.removeLayer(spaghettiLayerGroup);
             }

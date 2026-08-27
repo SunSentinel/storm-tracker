@@ -13,6 +13,48 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=
 var cacheBuster = "?v=" + new Date().getTime() + "#.zip";
 
 
+// --- 0. SPAGHETTI MODEL TRACKS (FETCH & RENDER) ---
+var spaghettiLayerGroup = L.layerGroup();
+
+fetch('./data/spaghetti.geojson?v=' + new Date().getTime())
+    .then(function(response) {
+        if (!response.ok) {
+            throw new Error('Spaghetti GeoJSON not found or empty.');
+        }
+        return response.json();
+    })
+    .then(function(data) {
+        if (data && data.features && data.features.length > 0) {
+            var spaghettiGeoJson = L.geoJSON(data, {
+                style: function(feature) {
+                    return {
+                        color: '#aaaaaa', // Clean, subtle light grey shade for all models
+                        weight: 1.5,
+                        opacity: 0.65,
+                        dashArray: '4, 4' // Subtle dashed line styling
+                    };
+                },
+                onEachFeature: function(feature, layer) {
+                    if (feature.properties && feature.properties.model) {
+                        layer.bindTooltip("Model: " + feature.properties.model, {
+                            sticky: true,
+                            direction: 'auto'
+                        });
+                    }
+                }
+            });
+            spaghettiLayerGroup.addLayer(spaghettiGeoJson);
+            spaghettiLayerGroup.addTo(map);
+
+            // Send spaghetti layer to the background so NHC track & cone stay on top
+            spaghettiGeoJson.bringToBack();
+        }
+    })
+    .catch(function(err) {
+        console.log("Notice: Could not load spaghetti models: " + err.message);
+    });
+
+
 // --- 1. WIND WATCHES & WARNINGS ---
 var wwlinZip = "./data/wwlin.zip" + cacheBuster;
 var wwlinShp = new L.Shapefile(wwlinZip, {
@@ -72,7 +114,7 @@ var trackShp = new L.Shapefile(trackZip, {
             opacity: 1,
             fillOpacity: 1,
             stroke: true,
-            weight: 1.75,
+            weight: 2.5,
             color: "black"
         }
     }
@@ -82,7 +124,6 @@ trackShp.addTo(map);
 // Automatically zoom and pan to the storm track once data loads
 trackShp.once("data:loaded", function() {
     if (trackShp.getBounds().isValid()) {
-        // Increased padding from [50, 50] to [120, 120] for a wider view around the storm
         map.fitBounds(trackShp.getBounds(), { padding: [100, 100] });
     }
 });
@@ -106,21 +147,16 @@ var pointsShp = new L.Shapefile(pointsZip, {
         }
     },
     pointToLayer: function(feature, latlng) {
-        // Grab the letter from the shapefile (D, S, H, or M)
         var letter = feature.properties.DVLBL;
-        
-        // Dynamically assign the CSS class defined in app.css
         var customClass = "storm-icon icon-" + letter;
         
-        // Create the HTML-based icon
         var stormIcon = L.divIcon({
             className: customClass,
             html: letter,
-            iconSize: [18, 18], // 18px width and height
-            iconAnchor: [9, 9]  // Centers icon perfectly over coordinate
+            iconSize: [18, 18],
+            iconAnchor: [9, 9]
         });
         
-        // Return a standard marker using our custom icon
         return L.marker(latlng, { icon: stormIcon });
     }
 });
@@ -131,22 +167,18 @@ pointsShp.addTo(map).bringToFront();
 var legend = L.control({ position: 'bottomright' });
 
 legend.onAdd = function (map) {
-    // Create the main container
     var div = L.DomUtil.create('div', 'leaflet-legend leaflet-bar leaflet-control');
     div.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
     div.style.padding = '10px';
     div.style.lineHeight = '1.8em';
     div.style.color = '#333';
     
-    // Prevent clicking the legend from clicking the map underneath
     L.DomEvent.disableClickPropagation(div);
 
-    // Create the clickable header
     var header = L.DomUtil.create('div', 'legend-header', div);
     header.style.cursor = 'pointer';
     header.style.textAlign = 'center';
     
-    // Create the content container
     var content = L.DomUtil.create('div', 'legend-content', div);
 
     var html = '';
@@ -166,9 +198,15 @@ legend.onAdd = function (map) {
     html += '<div style="display:inline-block; width:18px; height:4px; background-color:#d80000; margin-right:6px; vertical-align:middle;"></div> Hurricane warning<br>';
 
     // Path & Cone
-    html += '<br><strong>Path</strong><br>';
-    html += '<div style="display:inline-block; width:18px; height:18px; background-color:#3d9da4; opacity:0.5; border-radius:50%; margin-right:6px; vertical-align:middle;"></div> Storm cone<br>';
-    html += '<div style="display:inline-block; width:18px; height:2px; background-color:black; margin-right:6px; vertical-align:middle;"></div> Storm track<br>';
+    html += '<br><strong>Official Forecast</strong><br>';
+    html += '<div style="display:inline-block; width:18px; height:18px; background-color:#3d9da4; opacity:0.5; border-radius:50%; margin-right:6px; vertical-align:middle;"></div> Forecast cone<br>';
+    html += '<div style="display:inline-block; width:18px; height:3px; background-color:black; margin-right:6px; vertical-align:middle;"></div> Official track<br>';
+
+    // Spaghetti Models Section & Toggle
+    html += '<br><strong>Computer Models</strong><br>';
+    html += '<label style="cursor:pointer; user-select:none;"><input type="checkbox" id="toggleSpaghetti" checked style="vertical-align:middle; margin-right:5px;"> Show spaghetti lines</label><br>';
+    html += '<div style="display:inline-block; width:18px; height:0px; border-top:2px dashed #aaaaaa; margin-right:6px; vertical-align:middle;"></div> Computer models<br>';
+
     html += '</div>';
 
     content.innerHTML = html;
@@ -177,14 +215,13 @@ legend.onAdd = function (map) {
     header.onclick = function() {
         if (content.style.display === 'none') {
             content.style.display = 'block';
-            header.innerHTML = '<strong>Legend &#9660;</strong>'; // Down arrow
+            header.innerHTML = '<strong>Legend &#9660;</strong>';
         } else {
             content.style.display = 'none';
-            header.innerHTML = '<strong>Legend &#9650;</strong>'; // Up arrow
+            header.innerHTML = '<strong>Legend &#9650;</strong>';
         }
     };
 
-    // Responsive design toggle (Auto-collapses on screens narrower than 450px)
     if (window.innerWidth <= 450) {
         content.style.display = 'none';
         header.innerHTML = '<strong>Legend &#9650;</strong>'; 
@@ -197,3 +234,20 @@ legend.onAdd = function (map) {
 };
 
 legend.addTo(map);
+
+// Add event listener for the Spaghetti checkbox toggle after legend mounts
+setTimeout(function() {
+    var toggle = document.getElementById('toggleSpaghetti');
+    if (toggle) {
+        toggle.addEventListener('change', function(e) {
+            if (e.target.checked) {
+                map.addLayer(spaghettiLayerGroup);
+                spaghettiLayerGroup.eachLayer(function(layer) {
+                    if (layer.bringToBack) layer.bringToBack();
+                });
+            } else {
+                map.removeLayer(spaghettiLayerGroup);
+            }
+        });
+    }
+}, 300);
