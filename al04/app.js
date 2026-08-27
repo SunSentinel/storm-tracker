@@ -2,8 +2,8 @@
 
 var map = L.map('map').setView([27.176, -92.87], 4.5);
 
-// Adding CartoDB Positron (Light & Minimal Basemap)
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+// Adding CartoDB Positron (Light & Minimal Basemap) - Now with API Key
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_2cv5_1_a7200e47d8bf0ea75d99f6fc', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 18
