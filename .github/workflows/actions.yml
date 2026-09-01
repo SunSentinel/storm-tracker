@@ -25,16 +25,17 @@ jobs:
           
       - name: execute storm scrapers
         run: |
-          cd al02 && python3 scraper.py && cd ..
-          cd al03 && python3 scraper.py && cd ..
-          cd al04 && python3 scraper.py && cd ..
+          python3 al02/scraper.py || true
+          python3 al03/scraper.py || true
+          python3 al04/scraper.py || true
+          python3 al05/scraper.py || true
           
       - name: commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git diff-index --quiet HEAD || git commit -m "Auto-update active storm data (al02, al03, al04)"
+          git diff-index --quiet HEAD || git commit -m "Auto-update active storm data (al02, al03, al04, al05)"
           
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
