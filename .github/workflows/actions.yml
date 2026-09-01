@@ -29,13 +29,18 @@ jobs:
           python3 al03/scraper.py || true
           python3 al04/scraper.py || true
           python3 al05/scraper.py || true
+          python3 al06/scraper.py || true
+          python3 al07/scraper.py || true
+          python3 al08/scraper.py || true
+          python3 al09/scraper.py || true
+          python3 al10/scraper.py || true
           
       - name: commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git diff-index --quiet HEAD || git commit -m "Auto-update active storm data (al02, al03, al04, al05)"
+          git diff-index --quiet HEAD || git commit -m "Auto-update active storm data"
           
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
