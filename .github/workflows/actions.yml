@@ -8,8 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
+    permissions:
+      contents: write # Grants the GITHUB_TOKEN permission to push automated commits
 
+    steps:
       - name: checkout repo content
         uses: actions/checkout@v4
 
@@ -35,15 +37,9 @@ jobs:
           python3 al09/scraper.py || true
           python3 al10/scraper.py || true
           
-      - name: commit files
+      - name: commit and push updated data
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git diff-index --quiet HEAD || git commit -m "Auto-update active storm data"
-          
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            branch: main
+          git diff-index --quiet HEAD || (git commit -m "Auto-update active storm data" && git push)
