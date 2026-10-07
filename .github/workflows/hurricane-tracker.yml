@@ -1,9 +1,9 @@
 name: run scraper.py
 
 on:
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+  workflow_dispatch:
   schedule:
-    - cron: '4 * * * *' # Every hour, at 3 min past the hour
+    - cron: '2 * * * *'
 
 jobs:
   build:
